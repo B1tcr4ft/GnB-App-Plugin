@@ -26,6 +26,7 @@
   },
   "dependencies": {
     "jquery": "^3.3.1",
+    "jsbayes": "^0.1.0",
     "jsbayes-viz": "0.0.7"
   },
   "devDependencies": {}

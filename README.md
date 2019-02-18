@@ -1,6 +1,6 @@
-#G&B  
-##User guide  
-Cose  
-  
-##Installing  
-Run command ```npm install```  
+# G&B
+## User guide
+Cose
+
+## Installing
+Run command ```npm install```

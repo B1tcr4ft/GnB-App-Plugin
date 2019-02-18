@@ -1,3 +1,32 @@
 {
-
+  "name": "gnb",
+  "version": "0.0.1",
+  "description": "Description",
+  "main": "",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/bitcrafters/gnb.git"
+  },
+  "keywords": [
+    "bayesian",
+    "network",
+    "javascript",
+    "probability",
+    "probabilistic",
+    "inference",
+    "sampling",
+    "visualization",
+    "grafana"
+  ],
+  "author": "Bitcraft <bitcraft.it@gmail.com> (https://bitcraftswe.it)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://gitlab.com/bitcrafters/gnb/issues"
+  },
+  "dependencies": {
+    "jquery": "^3.3.1",
+    "jsbayes-viz": "0.0.7"
+  },
+  "devDependencies": {}
 }

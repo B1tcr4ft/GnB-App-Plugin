@@ -46,7 +46,7 @@ System.register(['app/plugins/sdk', '../css/example-app.css!'], function (_expor
         function ExampleAppPanelCtrl($scope, $injector) {
           _classCallCheck(this, ExampleAppPanelCtrl);
 
-          return _possibleConstructorReturn(this, Object.getPrototypeOf(ExampleAppPanelCtrl).call(this, $scope, $injector));
+          return _possibleConstructorReturn(this, (ExampleAppPanelCtrl.__proto__ || Object.getPrototypeOf(ExampleAppPanelCtrl)).call(this, $scope, $injector));
         }
 
         return ExampleAppPanelCtrl;

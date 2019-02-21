@@ -44,18 +44,84 @@ function getGraph(data) {
 ExampleAppPanelCtrl.template = '<svg id="bbn"></svg>';
 
 $(document).ready(function() {
-  $.getJSON('exampleA.json', function (data) {
-    let graph = getGraph(data);
+  let data = {
+    "name": "Rete Bayesiana A",
 
-    let g = jsbayesviz.fromGraph(graph);
+    "databaseWriteName": "Influx2",
+    "refreshTime": 5000,
 
-    jsbayesviz.draw({
-      id: '#bbn',
-      width: 800,
-      height: 800,
-      graph: g,
-      samples: 15000
-    });
+    "nodes": [
+      {
+        "id": "A",
+        "name": "Node A",
+        "parents": ["B"],
+
+        "states": [
+          {"name": "State 0", "trigger": "%v>=90"},
+          {"name": "State 1", "trigger": "40<%v<90"},
+          {"name": "State 2", "trigger": "%v<=40"}
+        ],
+        "cpt": [
+          [0.4, 0.1, 0.5],
+          [0.2, 0.2, 0.6]
+        ],
+
+        "sensor": {
+          "databaseSensorName": "Influx1",
+          "databaseSensorTable": "Server1",
+          "databaseSensorColumn": "CPU"
+        }
+      },
+      {
+        "id": "B",
+        "name": "Node B",
+        "parents": [],
+
+        "states": [
+          {"name": "State 0", "trigger": "%v>=50"},
+          {"name": "State 1", "trigger": "%v<50"}
+        ],
+        "cpt": [
+          [0.6, 0.4]
+        ],
+
+        "sensor": {}
+      },
+      {
+        "id": "C",
+        "name": "Node C",
+        "parents": ["A", "B"],
+
+        "states": [
+          {"name": "State 0", "trigger": "%v>=50"},
+          {"name": "State 1", "trigger": "0<=%v<50"}
+        ],
+        "cpt": [
+          [0.4, 0.6],
+          [0.2, 0.8],
+
+          [0.3, 0.7],
+          [0.4, 0.6],
+
+          [0.1, 0.9],
+          [0.7, 0.3]
+        ],
+
+        "sensor": {}
+      }
+    ]
+  };
+
+  let graph = getGraph(data);
+
+  let g = jsbayesviz.fromGraph(graph);
+
+  jsbayesviz.draw({
+    id: '#bbn',
+    width: 800,
+    height: 800,
+    graph: g,
+    samples: 15000
   });
 });
 

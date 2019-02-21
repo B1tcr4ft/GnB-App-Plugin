@@ -1,6 +1,6 @@
 'use strict';
 
-System.register(['app/plugins/sdk', '../css/example-app.css!', 'bayes.js'], function (_export, _context) {
+System.register(['app/plugins/sdk', '../css/example-app.css!'], function (_export, _context) {
   "use strict";
 
   var PanelCtrl, ExampleAppPanelCtrl;
@@ -35,10 +35,52 @@ System.register(['app/plugins/sdk', '../css/example-app.css!', 'bayes.js'], func
     if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
   }
 
+  function getGraph(data) {
+    var graph = jsbayes.newGraph();
+
+    //creating the nodes
+    data.nodes.map(function (node) {
+      var status = node.states.map(function (state) {
+        return state.name;
+      });
+      graph.addNode(node.id, status);
+    });
+
+    //adding data to nodes
+    data.nodes.map(function (node) {
+      var graphNode = graph.node(node.id);
+
+      //setting parents
+      node.parents.forEach(function (parent) {
+        return graphNode.addParent(graph.node(parent));
+      });
+
+      //setting cpt
+      var cpt = [];
+      if (node.cpt.length === 1) {
+        cpt = node.cpt[0].map(function (num) {
+          return parseFloat(num);
+        });
+      } else {
+        node.cpt.map(function (entry) {
+          return cpt.push(entry.map(function (num) {
+            return parseFloat(num);
+          }));
+        });
+      }
+
+      graphNode.setCpt(cpt);
+    });
+
+    graph.sample(20000);
+
+    return graph;
+  }
+
   return {
     setters: [function (_appPluginsSdk) {
       PanelCtrl = _appPluginsSdk.PanelCtrl;
-    }, function (_cssExampleAppCss) {}, function (_bayesJs) {}],
+    }, function (_cssExampleAppCss) {}],
     execute: function () {
       _export('PanelCtrl', ExampleAppPanelCtrl = function (_PanelCtrl) {
         _inherits(ExampleAppPanelCtrl, _PanelCtrl);

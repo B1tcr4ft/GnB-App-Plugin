@@ -1,5 +1,12 @@
 import {PanelCtrl} from  'app/plugins/sdk';
 import '../css/example-app.css!'
+import '../../node_modules/d3/d3.js';
+import '../../node_modules/lodash/lodash.js';
+import '../../node_modules/graphlib/dist/graphlib.core.js';
+import '../../node_modules/dagre/dist/dagre.core.js';
+import '../../node_modules/jsbayes/jsbayes.js';
+import '../../node_modules/jsbayes-viz/jsbayes-viz.js';
+import '../../node_modules/jquery/dist/jquery.js';
 
 class ExampleAppPanelCtrl extends PanelCtrl {
 

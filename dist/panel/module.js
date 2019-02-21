@@ -1,9 +1,9 @@
 'use strict';
 
-System.register(['app/plugins/sdk', '../css/example-app.css!', '../../node_modules/d3/d3.js', '../../node_modules/lodash/lodash.js', '../../node_modules/graphlib/dist/graphlib.core.js', '../../node_modules/dagre/dist/dagre.core.js', '../../node_modules/jsbayes/jsbayes.js', '../../node_modules/jsbayes-viz/jsbayes-viz.js', '../../node_modules/jquery/dist/jquery.js'], function (_export, _context) {
+System.register(['app/plugins/sdk', '../css/example-app.css!', '../lib/jsbayes', '../lib/jsbayes-viz'], function (_export, _context) {
   "use strict";
 
-  var PanelCtrl, ExampleAppPanelCtrl;
+  var PanelCtrl, jsbayes, jsbayesviz, ExampleAppPanelCtrl;
 
   function _classCallCheck(instance, Constructor) {
     if (!(instance instanceof Constructor)) {
@@ -80,7 +80,11 @@ System.register(['app/plugins/sdk', '../css/example-app.css!', '../../node_modul
   return {
     setters: [function (_appPluginsSdk) {
       PanelCtrl = _appPluginsSdk.PanelCtrl;
-    }, function (_cssExampleAppCss) {}, function (_node_modulesD3D3Js) {}, function (_node_modulesLodashLodashJs) {}, function (_node_modulesGraphlibDistGraphlibCoreJs) {}, function (_node_modulesDagreDistDagreCoreJs) {}, function (_node_modulesJsbayesJsbayesJs) {}, function (_node_modulesJsbayesVizJsbayesVizJs) {}, function (_node_modulesJqueryDistJqueryJs) {}],
+    }, function (_cssExampleAppCss) {}, function (_libJsbayes) {
+      jsbayes = _libJsbayes;
+    }, function (_libJsbayesViz) {
+      jsbayesviz = _libJsbayesViz;
+    }],
     execute: function () {
       _export('PanelCtrl', ExampleAppPanelCtrl = function (_PanelCtrl) {
         _inherits(ExampleAppPanelCtrl, _PanelCtrl);

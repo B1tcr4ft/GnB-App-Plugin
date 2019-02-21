@@ -20,6 +20,12 @@ module.exports = function(grunt) {
                 expand: true,
                 src: ['README.md'],
                 dest: 'dist',
+            },
+            libs: {
+                cwd: 'src',
+                expand: true,
+                src: ['**/lib/*'],
+                dest: 'dist'
             }
         },
 

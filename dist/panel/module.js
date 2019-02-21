@@ -1,6 +1,6 @@
 'use strict';
 
-System.register(['app/plugins/sdk', '../css/example-app.css!'], function (_export, _context) {
+System.register(['app/plugins/sdk', '../css/example-app.css!', 'bayes.js'], function (_export, _context) {
   "use strict";
 
   var PanelCtrl, ExampleAppPanelCtrl;
@@ -38,7 +38,7 @@ System.register(['app/plugins/sdk', '../css/example-app.css!'], function (_expor
   return {
     setters: [function (_appPluginsSdk) {
       PanelCtrl = _appPluginsSdk.PanelCtrl;
-    }, function (_cssExampleAppCss) {}],
+    }, function (_cssExampleAppCss) {}, function (_bayesJs) {}],
     execute: function () {
       _export('PanelCtrl', ExampleAppPanelCtrl = function (_PanelCtrl) {
         _inherits(ExampleAppPanelCtrl, _PanelCtrl);
@@ -52,7 +52,23 @@ System.register(['app/plugins/sdk', '../css/example-app.css!'], function (_expor
         return ExampleAppPanelCtrl;
       }(PanelCtrl));
 
-      ExampleAppPanelCtrl.template = '<h2 class="example-app-heading">Example app!</h2>';
+      ExampleAppPanelCtrl.template = '<svg id="bbn"></svg>';
+
+      $(document).ready(function () {
+        $.getJSON('exampleA.json', function (data) {
+          var graph = getGraph(data);
+
+          var g = jsbayesviz.fromGraph(graph);
+
+          jsbayesviz.draw({
+            id: '#bbn',
+            width: 800,
+            height: 800,
+            graph: g,
+            samples: 15000
+          });
+        });
+      });
 
       _export('PanelCtrl', ExampleAppPanelCtrl);
     }

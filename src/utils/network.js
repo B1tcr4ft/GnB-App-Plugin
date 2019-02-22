@@ -28,7 +28,32 @@ export class Network {
         }
 
         let graph = jsbayes.newGraph();
-        //stuff here
+
+        //creating the nodes
+        this.nodes.forEach(node => {
+            let status = node.states.map(state => state.name);
+            graph.addNode(node.ID, status);
+        });
+
+        //adding data to nodes
+        this.nodes.forEach(node => {
+            let graphNode = graph.node(node.ID);
+
+            //setting parents
+            node.parents.forEach(parent => graphNode.addParent(graph.node(parent)));
+
+            //setting cpt
+            let cpt = [];
+            if(node.cpt.length === 1) {
+                cpt = node.cpt[0].map(num => parseFloat(num));
+            } else {
+                node.cpt.forEach(entry => cpt.push(entry.map(num => parseFloat(num))));
+            }
+            graphNode.setCpt(cpt);
+        });
+
+        graph.sample(20000);
+
         this.graph = graph;
     }
 }

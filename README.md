@@ -3,4 +3,4 @@
 Cose
 
 ## Installing
-Run command ```npm install```
+Run command ```npm install``` and then ```npm build install```

@@ -31,8 +31,8 @@ export class Network {
 
         //creating the nodes
         this.nodes.forEach(node => {
-            let status = node.states.map(state => state.name);
-            graph.addNode(node.ID, status);
+            let states = node.states.map(state => state.name);
+            graph.addNode(node.ID, states);
         });
 
         //adding data to nodes

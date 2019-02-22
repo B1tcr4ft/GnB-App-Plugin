@@ -1,4 +1,5 @@
 import { Node } from "./node";
+import { getNetworkFromJSON, getJSONFromNetwork } from "./json-util";
 import * as jsbayes from 'jsbayes';
 
 export class Network {
@@ -20,7 +21,7 @@ export class Network {
 
     /**
      * TODO
-     * I'd like to make this function private but idk how
+     * I'd like to make this function private but idk how to make it
      */
     makeGraph() {
         if(this.graph != null) {
@@ -39,21 +40,33 @@ export class Network {
         this.nodes.forEach(node => {
             let graphNode = graph.node(node.ID);
 
-            //setting parents
+            //setting parent nodes
             node.parents.forEach(parent => graphNode.addParent(graph.node(parent)));
 
             //setting cpt
-            let cpt = [];
-            if(node.cpt.length === 1) {
-                cpt = node.cpt[0].map(num => parseFloat(num));
-            } else {
-                node.cpt.forEach(entry => cpt.push(entry.map(num => parseFloat(num))));
-            }
-            graphNode.setCpt(cpt);
+            graphNode.setCpt(node.cpt);
         });
 
         graph.sample(20000);
 
         this.graph = graph;
+    }
+
+    /**
+     * Get a JSON definition of the network instance
+     * @returns {JSON} the JSON definition
+     */
+    toJSON() {
+        return getJSONFromNetwork(this);
+    }
+
+    /**
+     * Get a network instance from a JSON containing
+     * its definition
+     * @param json {JSON} the json file
+     * @returns {Network} the network instance
+     */
+    static fromJSON(json) {
+        return getNetworkFromJSON(json);
     }
 }

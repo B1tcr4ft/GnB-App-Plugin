@@ -13,4 +13,17 @@ export class State {
     isFired(currentValue) {
         return false;
     }
+
+    /**
+     * Get a state instance from a JSON containing
+     * its definition
+     * @param json {JSON} the json definition
+     * @return {State} the state instance
+     */
+    static fromJSON(json) {
+        let name = json.name;
+        let trigger = json.trigger;
+
+        return new State(name, trigger);
+    }
 }

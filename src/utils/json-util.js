@@ -42,21 +42,25 @@ function getGraphFromJSON(json) {
 
 /**
  * TODO
- * Get a network instance from a JSON containing
- * its definition
- * @param json {string} the json file
- * @returns {Network} the network instance
- */
-export function getNetworkFromJSON(json) {
-    return null;
-}
-
-/**
- * TODO
- * Get a JSON from a network instance
+ * Get a JSON definition of a network instance
  * @param network {Network} the network instance
  * @returns {JSON} the JSON definition
  */
 export function getJSONFromNetwork(network) {
     return null;
+}
+
+/**
+ * Get a network instance from a JSON containing
+ * its definition
+ * @param json {JSON} the json file
+ * @returns {Network} the network instance
+ */
+export function getNetworkFromJSON(json) {
+    let name = json.name;
+    let DBWriteName = json.databaseWriteName;
+    let refreshTime = json.refreshTime;
+    let nodes = json.nodes.map(node => Node.fromJSON(node));
+
+    return new Network(name, DBWriteName, refreshTime, nodes);
 }

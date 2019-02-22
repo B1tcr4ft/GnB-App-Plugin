@@ -19,4 +19,18 @@ export class Sensor {
     pushData(value) {
 
     }
+
+    /**
+     * Get a sensor instance from a JSON containing
+     * its definition
+     * @param json {JSON} the json definition
+     * @return {Sensor} the sensor instance
+     */
+    static fromJSON(json) {
+        let DBSensorName = json.databaseSensorName;
+        let DBSensorTable = json.databaseSensorTable;
+        let DBSensorColumn = json.databaseSensorColumn;
+
+        return new Sensor(DBSensorName, DBSensorTable, DBSensorColumn);
+    }
 }

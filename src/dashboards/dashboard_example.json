@@ -1,0 +1,36 @@
+{
+  "id": null,
+  "title": "Example App Dashboard",
+  "originalTitle": "Example App Dashboard",
+  "tags": [
+    "example-app", "imported"
+  ],
+  "style": "dark",
+  "timezone": "browser",
+  "editable": true,
+  "hideControls": true,
+  "sharedCrosshair": false,
+  "rows": [
+    {
+      "collapse": false,
+      "editable": true,
+      "height": "250px",
+      "panels": [
+        {
+          "editable": true,
+          "error": false,
+          "id": 2,
+          "links": [],
+          "mode": "html",
+          "span": 12,
+          "style": {},
+          "title": "",
+          "transparent": true,
+          "type": "grafana-plugin-template-webpack"
+        }
+      ],
+      "title": "Row"
+    }
+  ]
+
+}

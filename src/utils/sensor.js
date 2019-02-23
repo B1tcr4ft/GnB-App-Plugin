@@ -12,15 +12,6 @@ export class Sensor {
     }
 
     /**
-     * TODO
-     * Push the current node value into the database
-     * @param value the value to push
-     */
-    pushData(value) {
-
-    }
-
-    /**
      * Get a sensor instance from a JSON containing
      * its definition
      * @param json {JSON} the json definition

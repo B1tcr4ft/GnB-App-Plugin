@@ -53,6 +53,15 @@ export class Network {
     }
 
     /**
+     * TODO
+     * Calculates and updates current node values and state
+     * both in jsbayes and in the database
+     */
+    update() {
+
+    }
+
+    /**
      * Get a JSON definition of the network instance
      * @returns {JSON} the JSON definition
      */

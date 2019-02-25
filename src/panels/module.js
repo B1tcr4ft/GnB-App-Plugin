@@ -1,44 +1,42 @@
-import { PanelCtrl } from 'grafana/app/plugins/sdk'; // will be resolved to app/plugins/sdk
-
+import { PanelCtrl } from 'grafana/app/plugins/sdk';
 
 // Remove up to here
 
 class Ctrl extends PanelCtrl {
 
-  constructor($scope, $injector) {
-    super($scope, $injector);
+  constructor($scope, $http) {
+    super($scope, $http);
+    this.$http = $http;
   }
 
   link(scope, element) {
     this.initStyles();
-    this.prova();
   }
 
-  prova(){
-    var jsbayes=require('jsbayes');
-    var jsbayesviz=require('jsbayes-viz');
+  inputFun () {
+    var f = document.getElementById('upload').files[0];
+    var r = new FileReader();
+    var self = this;
+    r.onload = function(e) {
+      var contents = e.target.result;
+      console.log(contents);
+      self.test(contents);
+    };
+    r.readAsText(f);
+  }
+  test(dati) {
+    var req = {
+      method: 'POST',
+      //url: 'https://api.bitcraftswe.it/api/save/78',
+      url: 'http://localhost:8000/api/save/78',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      data: dati
+    };
 
-    var g = jsbayes.newGraph();
-    var n1 = g.addNode('n1', ['true', 'false']);
-    var n2 = g.addNode('n2', ['true', 'false']);
-    var n3 = g.addNode('n3', ['true', 'false']);
-
-    n2.addParent(n1);
-    n3.addParent(n2);
-    console.log(g);
-
-    g.reinit();
-    g.sample(20000);
-
-    let draw = jsbayesviz.fromGraph(g);
-
-    jsbayesviz.draw({
-      id: '#bbn',
-      width: 800,
-      height: 800,
-      graph: draw,
-      samples: 15000
-    });
+    this.$http(req)
+        .then((res)=>{console.log(res.headers.toString())}, (res)=>{console.log("non va")});
   }
 
   initStyles() {
@@ -61,6 +59,6 @@ class Ctrl extends PanelCtrl {
   
 }
 
-Ctrl.template = '<svg id="bbn"></svg>';
+Ctrl.templateUrl = 'panels/partials/template.html';
 
 export { Ctrl as PanelCtrl };

@@ -28,7 +28,7 @@
     "url": "https://gitlab.com/bitcrafters/gnb/issues"
   },
   "dependencies": {
-    "jsbayes": "^0.1.0",
+    "gnb-network": "gitlab:bitcrafters/gnb-network",
     "jsbayes-viz": "0.0.7"
   },
   "devDependencies": {

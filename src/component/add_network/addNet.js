@@ -15,7 +15,7 @@ class AddNetworkCtrl {
             this.databases = res;
         });
     }
-    
+
     inputFun () {
         let f = document.getElementById('upload').files[0];
         let r = new FileReader();

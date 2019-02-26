@@ -10,6 +10,10 @@
       "url": "http://bitcraftswe.it"
     },
     "keywords": ["GnB app"],
+    "logos": {
+      "small": "img/logoGnB.png",
+      "large": "img/logoGnB.png"
+    },
     "links": [],
     "version": "0.0.1",
     "updated": "2019-02-26"

@@ -42,6 +42,7 @@ module.exports = {
       { from: '**/*.js' },
       { from: '**/*.html' },
       { from: '**/*.css' },
+      { from: '**/*.png' }
     ]),
     ExtractTextPluginStyle
   ],

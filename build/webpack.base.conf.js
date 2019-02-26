@@ -8,7 +8,7 @@ const ExtractTextPluginLight = new ExtractTextPlugin('./css/panel.light.css');
 const ExtractTextPluginDark = new ExtractTextPlugin('./css/panel.dark.css');
 
 function resolve(dir) {
-  return path.join(__dirname, '..', dir)
+  return path.join(__dirname, '..', dir);
 }
 
 module.exports = {
@@ -25,7 +25,7 @@ module.exports = {
   },
   externals: [
     // remove the line below if you don't want to use buildin versions
-    'jquery', 'lodash', 'moment',
+    'jquery', 'lodash', 'moment','angular',
     function (context, request, callback) {
       var prefix = 'grafana/';
       if (request.indexOf(prefix) === 0) {
@@ -37,19 +37,19 @@ module.exports = {
   plugins: [
     new webpack.optimize.OccurrenceOrderPlugin(),
     new CopyWebpackPlugin([
-      { from: 'plugin.json' },
+      { from: '**/plugin.json' },
       { from: 'panels/*' },
-      { from: 'panels/partials/*' },
-      { from: 'dashboards/*' }
+      { from: 'dashboards/*' },
+      { from: 'component/*' },
+      { from: '**/*.js' },
+      { from: '**/*.html' },
     ]),
     ExtractTextPluginBase,
     ExtractTextPluginLight,
     ExtractTextPluginDark,
   ],
   resolve: {
-    alias: {
-      'src': resolve('src')
-    }
+      extensions: [".js", ".html"]
   },
   module: {
     rules: [

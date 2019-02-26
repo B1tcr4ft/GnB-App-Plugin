@@ -29,8 +29,8 @@
   },
 
   "includes": [
-    {"type": "dashboard", "name": "Example App Dashboard" , "path": "dashboards/dashboard_example.json","addToNav":  true},
-    {"type": "panel", "name": "Plugin Template Name"}
+    { "type": "dashboard", "name": "Example App Dashboard" , "path": "dashboards/dashboard_example.json", "addToNav":  true},
+    { "type": "page", "name": "Add Network", "component": "AddNetworkCtrl", "role": "Editor", "addToNav": true}
   ],
 
   "dependencies": {

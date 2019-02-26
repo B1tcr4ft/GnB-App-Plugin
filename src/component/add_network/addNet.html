@@ -1,0 +1,62 @@
+<div class="page-header">
+    <h1>Add Network</h1>
+</div>
+
+<div class="gf-form-group">
+    <div class="gf-form-inline">
+        <div class="gf-form">
+            <input type="file" id="upload" class="gf-form-input" >
+            <button class="gf-form-label" ng-click="ctrl.inputFun()">Aggiungi</button>
+        </div>
+    </div>
+</div>
+
+
+<section ng-if="ctrl.databases.length > 0" class="card-section card-list-layout-list" layout-mode>
+    <ol class="card-list" >
+        <li class="card-item-wrapper" ng-repeat="endpoint in ctrl.endpoints | filterByTag:ctrl.filter.tag | orderBy:ctrl.sort_field">
+            <div class="card-item pointer" ng-click="ctrl.gotoDashboard(endpoint, $event)">
+                <div class="card-item-header card-item-header--wp-icons card-item-header-action">
+                    <a style="margin-left: 15px; vertical-align: sub;" href="plugins/raintank-worldping-app/page/endpoint-details?endpoint={{endpoint.id}}">
+                        <i ng-class="icon" class="icon-gf icon-gf-settings" bs-tooltip="'Endpoint<br>Details & Config'"></i>
+                    </a>
+                </div>
+                <div class="card-item-body">
+                    <div class="card-item-details">
+                        <div class="card-item-name">
+                            <a href="dashboard/db/worldping-endpoint-summary?&var-endpoint={{endpoint.slug}}&var-probe=All">
+                                {{endpoint.name}}
+                            </a>
+                            <span ng-repeat="tag in endpoint.tags" tag-color-from-name="tag"  class="label label-tag">
+								{{tag}}
+							</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </li>
+    </ol>
+</section>
+
+<div class="gf-form-group">
+    <div class="gf-form-inline">
+        <div class="gf-form">
+            <label class="gf-form-label">Data Source</label>
+            <gf-form-dropdown model="ctrl.panelDsValue" css-class="gf-size-auto" lookup-text="true" get-options="ctrl.getOptions(true)" on-change="ctrl.datasourceChanged($option)">
+                <input type="text" data-provide="typeahead" class="gf-form-input" spellcheck="false" style="width: 96px; display: none;">
+                <ul class="typeahead dropdown-menu" style="top: 36.2px; left: 86.3667px; display: none;">
+                    <a ng-class="ctrl.cssClasses" tabindex="1" ng-click="ctrl.open()" give-focus="ctrl.focus" ng-bind-html="ctrl.display || '&nbsp;'" class="gf-form-input gf-form-input--dropdown gf-size-auto" style="">default</a>
+            </gf-form-dropdown>
+        </div>
+
+        <div class="gf-form gf-form--grow">
+            <label class="gf-form-label gf-form-label--grow"></label>
+        </div>
+
+        <div class="gf-form">
+            <button class="gf-form-label" ng-click="ctrl.toggleQueryTroubleshooter()" bs-tooltip="'Display query request &amp; response'" data-original-title="" title="">
+                <i class="fa fa-fw fa-caret-right" ng-hide="ctrl.queryTroubleshooterOpen"></i><i class="fa fa-fw fa-caret-down ng-hide" ng-show="ctrl.queryTroubleshooterOpen"></i>Query Inspector
+            </button>
+        </div>
+    </div>
+</div>

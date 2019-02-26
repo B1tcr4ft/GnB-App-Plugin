@@ -6,19 +6,19 @@ class Ctrl extends PanelCtrl {
 
   constructor($scope, $injector) {
     super($scope, $injector);
-    this.initStyles();
+    //this.initStyles();
   }
 
-  initStyles() {
+  /*initStyles() {
     window.System.import(this.panelPath + 'css/style.css!');
     // Remove next lines if you don't need separate styles for light and dark themes
-    /*if (grafanaBootData.user.lightTheme) {
+    f (grafanaBootData.user.lightTheme) {
       window.System.import(this.panelPath + 'css/panel.light.css!');
     } else {
       window.System.import(this.panelPath + 'css/panel.dark.css!');
-    }*/
+    }
     // Remove up to here
-  }
+  }*/
 
   get panelPath() {
     if (this._panelPath === undefined) {

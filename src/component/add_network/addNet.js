@@ -11,19 +11,31 @@ class AddNetworkCtrl {
     }
 
     getDatabases() {
-        var self=this;
-        var g =self.backendSrv.get('api/datasources');
-        console.log(g);
+        this.backendSrv.get('api/datasources').then((res) => {
+            this.databases = res;
+        });
     }
-
+    
     inputFun () {
-        var f = document.getElementById('upload').files[0];
-        var r = new FileReader();
-        var self = this;
+        let f = document.getElementById('upload').files[0];
+        let r = new FileReader();
+        let self = this;
         r.onload = function(e) {
             var contents = e.target.result;
-            console.log(contents);
-            self.test(contents);
+            let database = document.getElementById("databases"); //html select database
+            var rete = JSON.parse(contents); //json rete inserita da file
+
+            self.databases.forEach(function(c){
+                if(c.name === database.options[database.selectedIndex].text) { //appena trovo il database giusto aggiungo nel json della rete
+                    rete.databaseWriteName = database.options[database.selectedIndex].text;
+                    rete.databaseWriteUrl = c.url;
+                    rete.databaseWriteUser = c.user;
+                    rete.databaseWritePassword = c.password;
+                }
+            });
+
+            console.log(rete);
+            self.test(rete);
         };
         r.readAsText(f);
     }
@@ -32,7 +44,7 @@ class AddNetworkCtrl {
         var req = {
             method: 'POST',
             //url: 'https://api.bitcraftswe.it/api/save/78',
-            url: 'https://api.bitcraftswe.it/api/save/88',
+            url: 'https://api.bitcraftswe.it/api/save/89',
             headers: {
                 'Content-Type': 'application/json'
             },

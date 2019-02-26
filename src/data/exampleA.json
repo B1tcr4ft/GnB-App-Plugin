@@ -2,6 +2,9 @@
 	"name": "Rete Bayesiana A",
 	
 	"databaseWriteName": "Influx2",
+    "databaseWriteUrl" : "",
+    "databaseWriteUser" : "",
+    "databaseWritePassword" : "",
 	"refreshTime": 5000, 
 	
 	"nodes": [

@@ -1,7 +1,9 @@
 
 class AddNetworkCtrl {
 
-    constructor($http, backendSrv) {
+    constructor($scope, $injector, $http, backendSrv) {
+        this.$scope = $scope;
+        this.$injector = $injector;
         this.$http = $http;
         this.backendSrv = backendSrv;
         this.databases = [];
@@ -37,8 +39,7 @@ class AddNetworkCtrl {
             data: dati
         };
 
-        this.$http(req)
-            .then((res)=>{console.log(res.headers.toString())}, (res)=>{console.log("non va")});
+        this.$http(req);
     }
 }
 

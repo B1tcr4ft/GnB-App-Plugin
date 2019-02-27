@@ -14,7 +14,8 @@ module.exports = {
   context: resolve('src'),
   entry: {
     './module': './module.js',
-    'panels/module': './panels/module.js'
+    'panels/module': './panels/module.js',
+    'panels/bayesian-networks-list/module': './panels/bayesian-networks-list/module.js'
   },
   output: {
     filename: "[name].js",

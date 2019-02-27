@@ -1,0 +1,12 @@
+
+<div ng-if="ctrl.nets==0">nessuna rete</div>
+
+<div class="gf-form-group">
+    <div class="gf-form-inline" ng-repeat="net in ctrl.nets">
+        <div class="gf-form">
+            <h4>{{net.name}}</h4>
+            <button class="btn btn-success" ng-click="ctrl.start(net.id)">avvia</button>
+            <button class="btn btn-danger" ng-click="ctrl.stop(net.id)">stop</button>
+        </div>
+    </div>
+</div>

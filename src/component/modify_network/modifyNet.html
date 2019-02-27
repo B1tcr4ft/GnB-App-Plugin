@@ -1,22 +1,31 @@
 <div class="page-header">
-    <h1>Add Network</h1>
+    <h1>Modify Network</h1>
 </div>
 
 <div class="gf-form-group">
     <div class="gf-form-inline">
         <div class="gf-form">
-            <input type="file" id="upload" class="gf-form-input" >
+            <label class="gf-form-label" for="networks">Networks</label>
+            <select name="networks" id="networks" ng-options="network as network.name for network in ctrl.networks" ng-model="network" ng-change="ctrl.getNodes()">
+            </select>
+            <select name="nodes" id="nodes" ng-options="node as node.name for node in ctrl.nodes" ng-model="node" >
+                <option value="" disabled selected hidden>Node</option>
+            </select>
         </div>
     </div>
-</div>
-
-<div class="gf-form-group" ng-if="ctrl.databases.length > 0">
     <div class="gf-form-inline">
         <div class="gf-form">
             <label class="gf-form-label" for="databases">Data Source</label>
-            <select name="databases" id="databases" ng-options="database as database.name for database in ctrl.databases" ng-model="database">
+            <select name="databases" id="databases" ng-options="database as database.name for database in ctrl.databases" ng-model="database" ng-change="ctrl.getTables()">
+                <option value="" disabled selected hidden>Database</option>
             </select>
-            <button class="btn btn-success" ng-click="ctrl.inputFun()">Carica rete</button>
+            <select name="tables" id="tables" ng-options="table as table.name for table in ctrl.tables" ng-model="table" ng-change="ctrl.getColumns()">
+                <option value="" disabled selected hidden>Table</option>
+            </select>
+            <select name="columns" id="columns" ng-options="column as column[0] for column in ctrl.columns" ng-model="column">
+                <option value="" disabled selected hidden>Column</option>
+            </select>
+            <button class="btn btn-success" ng-click="ctrl.inputFun()">Modifica rete</button>
         </div>
     </div>
 </div>

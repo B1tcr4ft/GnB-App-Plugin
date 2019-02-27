@@ -27,7 +27,7 @@ class AddNetworkCtrl {
 
             self.databases.forEach(function(c){
                 if(c.name === database.options[database.selectedIndex].text) { //appena trovo il database giusto aggiungo nel json della rete
-                    rete.databaseWriteName = database.options[database.selectedIndex].text;
+                    rete.databaseWriteName = c.database;
                     rete.databaseWriteUrl = c.url;
                     rete.databaseWriteUser = c.user;
                     rete.databaseWritePassword = c.password;

@@ -25,9 +25,12 @@
 			],
 
 			"sensor": {
-				"databaseSensorName": "Influx1",
-				"databaseSensorTable": "Server1",
-				"databaseSensorColumn": "CPU"
+				"databaseSensorUrl": "http://168.83.74.78:8086",
+				"databaseSensorUser": "",
+				"databaseSensorPassword": "",
+				"databaseSensorName": "telegraf",
+				"databaseSensorTable": "cpu",
+				"databaseSensorColumn": "usage_guest"
 			}
 		},
 

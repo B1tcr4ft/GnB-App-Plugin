@@ -3,12 +3,10 @@ const webpack = require('webpack');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-const ExtractTextPluginBase = new ExtractTextPlugin('./css/panel.base.css');
-const ExtractTextPluginLight = new ExtractTextPlugin('./css/panel.light.css');
-const ExtractTextPluginDark = new ExtractTextPlugin('./css/panel.dark.css');
+const ExtractTextPluginStyle = new ExtractTextPlugin('./css/style.css');
 
 function resolve(dir) {
-  return path.join(__dirname, '..', dir)
+  return path.join(__dirname, '..', dir);
 }
 
 module.exports = {
@@ -25,7 +23,7 @@ module.exports = {
   },
   externals: [
     // remove the line below if you don't want to use buildin versions
-    'jquery', 'lodash', 'moment',
+    'jquery', 'lodash', 'moment','angular',
     function (context, request, callback) {
       var prefix = 'grafana/';
       if (request.indexOf(prefix) === 0) {
@@ -37,19 +35,19 @@ module.exports = {
   plugins: [
     new webpack.optimize.OccurrenceOrderPlugin(),
     new CopyWebpackPlugin([
-      { from: 'plugin.json' },
+      { from: '**/plugin.json' },
       { from: 'panels/*' },
-      { from: 'panels/partials/*' },
-      { from: 'dashboards/*' }
+      { from: 'dashboards/*' },
+      { from: 'component/*' },
+      { from: '**/*.js' },
+      { from: '**/*.html' },
+      { from: '**/*.css' },
+      { from: '**/*.png' }
     ]),
-    ExtractTextPluginBase,
-    ExtractTextPluginLight,
-    ExtractTextPluginDark,
+    ExtractTextPluginStyle
   ],
   resolve: {
-    alias: {
-      'src': resolve('src')
-    }
+      extensions: [".js", ".html"]
   },
   module: {
     rules: [
@@ -66,26 +64,12 @@ module.exports = {
         }
       },
       {
-        test: /\.base\.(s?)css$/,
-        use: ExtractTextPluginBase.extract({
-          fallback: 'style-loader',
-          use: ['css-loader', 'sass-loader']
-        })
-      },
-      {
-        test: /\.light\.(s?)css$/,
-        use: ExtractTextPluginLight.extract({
-          fallback: 'style-loader',
-          use: ['css-loader', 'sass-loader']
-        })
-      },
-      {
-        test: /\.dark\.(s?)css$/,
-        use: ExtractTextPluginDark.extract({
+        test: /\.css$/,
+        use: ExtractTextPluginStyle.extract({
           fallback: 'style-loader',
           use: ['css-loader', 'sass-loader']
         })
       }
     ]
   }
-}
+};

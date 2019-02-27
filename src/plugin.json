@@ -1,36 +1,27 @@
 {
   "type": "app",
-  "name": "Example",
+  "name": "GnB",
   "id": "grafana-example-app",
 
-  "pages": [
-    { "name": "Live stream", "component": "StreamPageCtrl", "role": "Editor"},
-    { "name": "Log view", "component": "LogsPageCtrl", "role": "Viewer"}
-  ],
-
-  "css": {
-    "dark":  "css/dark.css",
-    "light":  "css/light.css"
-  },
-
   "info": {
-    "description": "Example app for Grafana",
+    "description": "GnB app for Grafana",
     "author": {
-      "name": "Raintank",
-      "url": "http://raintank.io"
+      "name": "BitCraft",
+      "url": "http://bitcraftswe.it"
     },
-    "keywords": ["example app"],
-    "links": [
-      {"name": "Project site", "url": "https://github.com/grafana/example-app"},
-      {"name": "License & Terms", "url": "https://github.com/grafana/example-app/blob/master/LICENSE"}
-    ],
-    "version": "1.0.2",
-    "updated": "2015-06-06"
+    "keywords": ["GnB app"],
+    "logos": {
+      "small": "img/logoGnB.png",
+      "large": "img/logoGnB.png"
+    },
+    "links": [],
+    "version": "0.0.1",
+    "updated": "2019-02-26"
   },
 
   "includes": [
-    {"type": "dashboard", "name": "Example App Dashboard" , "path": "dashboards/dashboard_example.json","addToNav":  true},
-    {"type": "panel", "name": "Plugin Template Name"}
+    { "type": "dashboard", "name": "GnB App Dashboard" , "path": "dashboards/dashboard_example.json", "addToNav":  true},
+    { "type": "page", "name": "Add Network", "component": "AddNetworkCtrl", "role": "Editor", "addToNav": true}
   ],
 
   "dependencies": {

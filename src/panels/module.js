@@ -4,51 +4,21 @@ import { PanelCtrl } from 'grafana/app/plugins/sdk';
 
 class Ctrl extends PanelCtrl {
 
-  constructor($scope, $http) {
-    super($scope, $http);
-    this.$http = $http;
+  constructor($scope, $injector) {
+    super($scope, $injector);
+    //this.initStyles();
   }
 
-  link(scope, element) {
-    this.initStyles();
-  }
-
-  inputFun () {
-    var f = document.getElementById('upload').files[0];
-    var r = new FileReader();
-    var self = this;
-    r.onload = function(e) {
-      var contents = e.target.result;
-      console.log(contents);
-      self.test(contents);
-    };
-    r.readAsText(f);
-  }
-  test(dati) {
-    var req = {
-      method: 'POST',
-      //url: 'https://api.bitcraftswe.it/api/save/78',
-      url: 'http://localhost:8000/api/save/78',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      data: dati
-    };
-
-    this.$http(req)
-        .then((res)=>{console.log(res.headers.toString())}, (res)=>{console.log("non va")});
-  }
-
-  initStyles() {
-    window.System.import(this.panelPath + 'css/panel.base.css!');
+  /*initStyles() {
+    window.System.import(this.panelPath + 'css/style.css!');
     // Remove next lines if you don't need separate styles for light and dark themes
-    if (grafanaBootData.user.lightTheme) {
+    f (grafanaBootData.user.lightTheme) {
       window.System.import(this.panelPath + 'css/panel.light.css!');
     } else {
       window.System.import(this.panelPath + 'css/panel.dark.css!');
     }
     // Remove up to here
-  }
+  }*/
 
   get panelPath() {
     if (this._panelPath === undefined) {

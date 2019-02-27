@@ -1,10 +1,8 @@
 {
   "id": null,
-  "title": "Example App Dashboard",
-  "originalTitle": "Example App Dashboard",
-  "tags": [
-    "example-app", "imported"
-  ],
+  "title": "GnB App Dashboard",
+  "originalTitle": "GnB App Dashboard",
+  "tags": ["GnB app"],
   "style": "dark",
   "timezone": "browser",
   "editable": true,

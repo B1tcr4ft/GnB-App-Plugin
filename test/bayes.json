@@ -1,7 +1,11 @@
 {
+	"id": "A",
 	"name": "Rete Bayesiana A",
 	
 	"databaseWriteName": "Influx2",										//The database name (as it is called on Grafana's database list) where the nodes' probabilities will be registered
+	"databaseWriteUrl" : "",
+	"databaseWriteUser" : "",
+	"databaseWritePassword" : "",
 	"refreshTime": 5000,												//The interval time (in milliseconds) between the node updates
 	
 	"nodes": [

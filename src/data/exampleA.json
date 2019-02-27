@@ -1,4 +1,5 @@
 {
+	"id": "A",
 	"name": "Rete Bayesiana A",
 	
 	"databaseWriteName": "Influx2",
@@ -29,6 +30,7 @@
 				"databaseSensorColumn": "CPU"
 			}
 		},
+
 		{
 			"id": "B",
 			"name": "Node B",
@@ -44,6 +46,7 @@
 			
 			"sensor": {}
 		},
+
 		{
 			"id": "C",
 			"name": "Node C",

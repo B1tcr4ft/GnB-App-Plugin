@@ -15,7 +15,8 @@ module.exports = {
   entry: {
     './module': './module.js',
     'panels/module': './panels/module.js',
-    'panels/bayesian-networks-list/module': './panels/bayesian-networks-list/module.js'
+    'panels/bayesian-networks-list/module': './panels/bayesian-networks-list/module.js',
+    'panels/net/module': './panels/net/module.js'
   },
   output: {
     filename: "[name].js",

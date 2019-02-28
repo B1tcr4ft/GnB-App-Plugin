@@ -1,4 +1,5 @@
 import { PanelCtrl } from 'grafana/app/plugins/sdk';
+import { Network } from "gnb-network/es6";
 
 // Remove up to here
 

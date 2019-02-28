@@ -117,6 +117,7 @@ class ModifyNetworkCtrl {
                n.sensor.databaseSensorColumn = column.options[column.selectedIndex].text;
            }
         });
+        //TODO UPDATE rete esistente sul server
         console.log(this.networkSelected);
     }
 }

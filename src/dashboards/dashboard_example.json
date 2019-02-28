@@ -13,19 +13,34 @@
       "collapse": false,
       "editable": true,
       "height": "250px",
+      "width": "300px",
       "panels": [
         {
-          "editable": true,
+          "editable": false,
           "error": false,
           "id": 2,
+          "width": "300px",
           "links": [],
           "mode": "html",
           "span": 12,
           "style": {},
-          "title": "",
+          "title": "Administration",
           "transparent": true,
           "type": "grafana-plugin-template-webpack"
-        }
+        },
+        {
+          "editable": true,
+          "error": false,
+          "id": 3,
+          "width": "200px",
+          "links": [],
+          "mode": "html",
+          "span": 12,
+          "style": {},
+          "title": "Net",
+          "transparent": true,
+          "type": "net"
+          }
       ],
       "title": "Row"
     }

@@ -2,8 +2,8 @@
 	"id": "A",
 	"name": "Rete Bayesiana A",
 	
-	"databaseWriteName": "Influx2",
-    "databaseWriteUrl" : "",
+	"databaseWriteName": "telegraf",
+    "databaseWriteUrl" : "http://168.83.74.78:8086",
     "databaseWriteUser" : "",
     "databaseWritePassword" : "",
 	"refreshTime": 5000, 
@@ -47,7 +47,14 @@
 				[0.6, 0.4]
 			],
 			
-			"sensor": {}
+			"sensor": {
+                "databaseSensorUrl": "http://168.83.74.78:8086",
+                "databaseSensorUser": "",
+                "databaseSensorPassword": "",
+                "databaseSensorName": "telegraf",
+                "databaseSensorTable": "disk",
+                "databaseSensorColumn": "used"
+            }
 		},
 
 		{

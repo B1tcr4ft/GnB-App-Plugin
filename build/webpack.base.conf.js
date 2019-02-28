@@ -1,6 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const ExtractTextPluginStyle = new ExtractTextPlugin('./css/style.css');
@@ -43,13 +44,15 @@ module.exports = {
       { from: 'component/*' },
       { from: '**/*.js' },
       { from: '**/*.html' },
-      { from: '**/*.css' },
       { from: '**/*.png' }
     ]),
+    new CleanWebpackPlugin(['dist'], {
+      root: resolve('.')
+    }),
     ExtractTextPluginStyle
   ],
   resolve: {
-      extensions: [".js", ".html"]
+      extensions: [".js", ".html", ".css"]
   },
   module: {
     rules: [
@@ -67,10 +70,7 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: ExtractTextPluginStyle.extract({
-          fallback: 'style-loader',
-          use: ['css-loader', 'sass-loader']
-        })
+        use: ['css-loader', 'sass-loader']
       }
     ]
   }

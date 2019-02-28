@@ -12,7 +12,8 @@ class ModifyNetworkCtrl {
         this.nodes = [];
         this.tables = [];
         this.columns = [];
-        this.networkSelected;
+        this.networkSelected = null;
+        this.databaseSelected = null;
         this.getDatabases();
         this.getNetworks();
     }
@@ -66,8 +67,10 @@ class ModifyNetworkCtrl {
         let url;
         let name;
         this.tables = [];
+        let self = this;
         this.databases.forEach(function(c) {
             if (c.name === database.options[database.selectedIndex].text) { //appena trovo il database giusto aggiungo nel json della rete
+                self.databaseSelected = c;
                 url = c.url;
                 name = c.database;
             }
@@ -79,7 +82,6 @@ class ModifyNetworkCtrl {
 
         };
 
-        let self = this;
         this.$http(req).then((res) => {
             res.data.results[0].series.forEach(function (t){
                 self.tables.push(t);
@@ -98,6 +100,24 @@ class ModifyNetworkCtrl {
                 });
             }
         });
+    }
+
+    sendUpdates(){
+        let table = document.getElementById("tables");
+        let column = document.getElementById("columns");
+        let node = document.getElementById("nodes");
+        let self = this;
+        this.networkSelected.nodes.forEach(function(n){
+           if (n.name === node.options[node.selectedIndex].text){
+               n.sensor.databaseSensorUrl = self.databaseSelected.url;
+               n.sensor.databaseSensorUser = self.databaseSelected.user;
+               n.sensor.databaseSensorPassword = self.databaseSelected.password;
+               n.sensor.databaseSensorName = self.databaseSelected.database;
+               n.sensor.databaseSensorTable = table.options[table.selectedIndex].text;
+               n.sensor.databaseSensorColumn = column.options[column.selectedIndex].text;
+           }
+        });
+        console.log(this.networkSelected);
     }
 }
 

@@ -1,0 +1,16 @@
+<div class="row-fluid">
+    <div class="editor-row">
+        <div class="section">
+            <div class="editor-option">
+                <div class="gf-form-inline">
+                    <div class="gf-form">
+                        <label class="gf-form-label" for="networks">Networks</label>
+                        <select name="networks" id="networks" ng-options="network as network.name for network in ctrl.networks" ng-model="network" ng-change="ctrl.changeDisplayNet()">
+                            <option value="" disabled selected hidden>Net</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

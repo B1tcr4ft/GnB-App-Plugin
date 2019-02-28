@@ -29,7 +29,7 @@ class ModifyNetworkCtrl {
 
     getNetworks() {
         var req = {
-            method: 'POST',
+            method: 'GET',
             //url: 'https://api.bitcraftswe.it/api/save/78',
             url: 'https://api.bitcraftswe.it/api/retrieve/all'
         };

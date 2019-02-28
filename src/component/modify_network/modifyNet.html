@@ -7,6 +7,7 @@
         <div class="gf-form">
             <label class="gf-form-label" for="networks">Networks</label>
             <select name="networks" id="networks" ng-options="network as network.name for network in ctrl.networks" ng-model="network" ng-change="ctrl.getNodes()">
+                <option value="" disabled selected hidden>Net</option>
             </select>
             <select name="nodes" id="nodes" ng-options="node as node.name for node in ctrl.nodes" ng-model="node" >
                 <option value="" disabled selected hidden>Node</option>

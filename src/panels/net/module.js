@@ -15,17 +15,27 @@ class NetCtrl extends PanelCtrl {
     }
 
     getGraph(){
-        let bbn = document.getElementById("bbn");
-        risultato = chiamata;
-        risultato.stringify;
+        let network = document.getElementById("networks");
+        let idRete = null;
+        this.networks.forEach(function(c){
+            if(c.name === network.options[network.selectedIndex].text) {
+                idRete = c.id;
+            }
+        });
 
-        bbn.innerHTML(risultato)
+        let req = {
+            method: 'GET',
+            url: 'https://api.bitcraftswe.it/api/static-graph/' + idRete
+        };
+
+        this.$http(req).then((res) => {
+            document.getElementById("bbn").innerHTML = res.data;
+        });
     }
 
     getNetworks() {
         var req = {
             method: 'GET',
-            //url: 'https://api.bitcraftswe.it/api/save/78',
             url: 'https://api.bitcraftswe.it/api/retrieve/all'
         };
 

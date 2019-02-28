@@ -1,0 +1,30 @@
+.custom-btn {
+  margin-bottom: 10px;
+  width: 7rem; }
+
+/* jsbayesviz */
+svg {
+  border: 1px solid black; }
+
+svg g rect.node-shape {
+  border-radius: 5px !important;
+  fill: #ffecb3 !important;
+  cursor: move; }
+
+svg g text.node-name {
+  font-weight: 800 !important;
+  cursor: move; }
+
+svg g rect.node-bar {
+  fill: green !important; }
+
+svg g text.node-value {
+  fill: black !important;
+  font-size: 15px;
+  cursor: crosshair; }
+
+svg line.edge-line {
+  stroke: black !important; }
+
+svg path.edge-head {
+  fill: black !important; }

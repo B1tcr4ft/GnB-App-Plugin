@@ -4,7 +4,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-const ExtractTextPluginStyle = new ExtractTextPlugin('./css/style.css');
+const ExtractTextPluginDark = new ExtractTextPlugin('./css/gnb.dark.css');
 
 function resolve(dir) {
   return path.join(__dirname, '..', dir);
@@ -26,7 +26,7 @@ module.exports = {
   },
   externals: [
     // remove the line below if you don't want to use buildin versions
-    'jquery', 'lodash', 'moment','angular',
+    'jquery', 'lodash', 'moment','angular', 'react', 'react-dom',
     function (context, request, callback) {
       var prefix = 'grafana/';
       if (request.indexOf(prefix) === 0) {
@@ -49,10 +49,10 @@ module.exports = {
     new CleanWebpackPlugin(['dist'], {
       root: resolve('.')
     }),
-    ExtractTextPluginStyle
+    ExtractTextPluginDark
   ],
   resolve: {
-      extensions: [".js", ".html", ".css"]
+      extensions: [".js", ".html", ".scss"]
   },
   module: {
     rules: [
@@ -69,9 +69,12 @@ module.exports = {
         }
       },
       {
-        test: /\.css$/,
-        use: ['css-loader', 'sass-loader']
-      }
+        test: /\.dark\.scss$/,
+        use: ExtractTextPluginDark.extract({
+          fallback: 'style-loader',
+          use: ['css-loader', 'sass-loader']
+        })
+      },
     ]
   }
 };

@@ -1,0 +1,33 @@
+.custom-btn{
+  margin-bottom: 10px;
+  width: 7rem;
+}
+
+.panel-height-helper{
+  overflow: auto;
+}
+
+svg{
+  fill: #ffffff;
+  /*border: 1px solid black;*/
+  g{
+    rect.node-shape{
+      border-radius: 5px !important; fill:#eb7b18 !important;
+    }
+    rect.node-name{
+      font-weight: 800 !important;
+    }
+    rect.node-bar{
+      fill: green !important;
+    }
+    rect.node-value{
+      fill:rgb(0,0,0) !important; font-size: 15px;
+    }
+  }
+  line.edge-line {
+    stroke:#ffffff !important;
+  }
+  path.edge-head {
+    fill:#ffffff !important;
+  }
+}

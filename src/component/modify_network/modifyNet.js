@@ -122,7 +122,7 @@ class ModifyNetworkCtrl {
     }
 }
 
-ModifyNetworkCtrl.templateUrl = 'public/plugins/grafana-example-app/component/modify_network/modifyNet.html';
+ModifyNetworkCtrl.templateUrl = 'public/plugins/gnb/component/modify_network/modifyNet.html';
 
 export {
     ModifyNetworkCtrl

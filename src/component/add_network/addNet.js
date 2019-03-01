@@ -58,7 +58,7 @@ class AddNetworkCtrl {
     }
 }
 
-AddNetworkCtrl.templateUrl = 'public/plugins/grafana-example-app/component/add_network/addNet.html';
+AddNetworkCtrl.templateUrl = 'public/plugins/gnb/component/add_network/addNet.html';
 
 export {
     AddNetworkCtrl

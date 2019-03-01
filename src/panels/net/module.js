@@ -10,7 +10,7 @@ class NetCtrl extends PanelCtrl {
 
     initEditMode() {
         super.initEditMode();
-        this.addEditorTab('Network', 'public/plugins/grafana-example-app/panels/net/editor.html');
+        this.addEditorTab('Network', 'public/plugins/gnb/panels/net/editor.html');
         this.editorTabIndex = 1;
     }
 
@@ -29,7 +29,7 @@ class NetCtrl extends PanelCtrl {
         };
 
         this.$http(req).then((res) => {
-            document.getElementById("bbn").innerHTML = res.data;
+            document.getElementById("wrapper-bbn").innerHTML = res.data;
         });
     }
 
@@ -45,7 +45,7 @@ class NetCtrl extends PanelCtrl {
     }
 }
 
-NetCtrl.templateUrl = 'public/plugins/grafana-example-app/component/net/net.html';
+NetCtrl.templateUrl = 'public/plugins/gnb/component/net/net.html';
 
 export {
     NetCtrl as PanelCtrl

@@ -1,7 +1,7 @@
 {
   "type": "app",
   "name": "GnB",
-  "id": "grafana-example-app",
+  "id": "gnb",
 
   "info": {
     "description": "GnB app for Grafana",

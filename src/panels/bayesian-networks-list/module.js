@@ -31,7 +31,7 @@ class ListCtrl extends PanelCtrl {
         console.log("data");
         var self=this;
         var req = {
-            method: 'POST',
+            method: 'GET',
             url: 'https://api.bitcraftswe.it/api/retrieve/all'
         };
 

@@ -55,9 +55,9 @@
           "mode": "html",
           "span": 6,
           "style": {},
-          "title": "Net",
+          "title": "Network",
           "transparent": true,
-          "type": "net"
+          "type": "network"
           }
       ],
       "title": "Row"

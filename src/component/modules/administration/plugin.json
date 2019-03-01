@@ -1,22 +1,5 @@
 {
   "type": "panel",
   "name": "Administration",
-  "id": "administration",
-  "info": {
-    "description": "Plugin Template Name Description",
-    "author": {
-      "name": "Author Name",
-      "url": "example.com"
-    },
-    "keywords": [ ],
-    "logos": { },
-    "links": [ ],
-    "screenshots": [ ],
-    "version": "0.0.1",
-    "updated": "2017-04-05"
-  },
-  "dependencies": {
-    "grafanaVersion": "3.x.x",
-    "plugins": [ ]
-  }
+  "id": "administration"
 }

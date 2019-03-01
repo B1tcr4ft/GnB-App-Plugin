@@ -1,7 +1,8 @@
 import './sass/gnb.dark.scss';
 
-import {AddNetworkCtrl} from './component/add_network/addNet';
-import {ModifyNetworkCtrl} from './component/modify_network/modifyNet';
+import {AddNetworkCtrl} from './component/pages/add_network/add_network';
+import {ModifyNetworkCtrl} from './component/pages/modify_network/modify_network';
+import {GnbAppConfigCtrl} from "./component/config/config";
 import {loadPluginCss} from 'grafana/app/plugins/sdk';
 
 loadPluginCss({
@@ -10,5 +11,6 @@ loadPluginCss({
 
 export {
     AddNetworkCtrl,
-    ModifyNetworkCtrl
+    ModifyNetworkCtrl,
+    GnbAppConfigCtrl as ConfigCtrl
 };

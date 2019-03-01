@@ -1,4 +1,4 @@
-import {Network} from "gnb-network/es6/src/network";
+import {Network} from "gnb-network/es6";
 
 class AddNetworkCtrl {
 
@@ -58,7 +58,7 @@ class AddNetworkCtrl {
     }
 }
 
-AddNetworkCtrl.templateUrl = 'public/plugins/gnb/component/add_network/addNet.html';
+AddNetworkCtrl.templateUrl = 'public/plugins/gnb/component/pages/add_network/add_network.html';
 
 export {
     AddNetworkCtrl

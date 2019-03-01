@@ -11,6 +11,27 @@
   "rows": [
     {
       "collapse": false,
+      "editable": false,
+      "height": "39px",
+      "panels": [
+        {
+          "content": "<img src=\"public/plugins/gnb/img/logoGnB.png\" height=\"50\">",
+          "editable": false,
+          "error": false,
+          "id": 1,
+          "links": [],
+          "mode": "html",
+          "span": 12,
+          "style": {},
+          "title": "",
+          "transparent": true,
+          "type": "text"
+        }
+      ],
+      "title": ""
+    },
+    {
+      "collapse": false,
       "editable": true,
       "height": "300px",
       "panels": [
@@ -24,7 +45,7 @@
           "style": {},
           "title": "Administration",
           "transparent": true,
-          "type": "grafana-plugin-template-webpack"
+          "type": "administration"
         },
         {
           "editable": true,

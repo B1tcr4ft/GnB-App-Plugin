@@ -1,4 +1,3 @@
-
 class ModifyNetworkCtrl {
 
     constructor($scope, $injector, $http, backendSrv) {
@@ -122,7 +121,7 @@ class ModifyNetworkCtrl {
     }
 }
 
-ModifyNetworkCtrl.templateUrl = 'public/plugins/gnb/component/modify_network/modifyNet.html';
+ModifyNetworkCtrl.templateUrl = 'public/plugins/gnb/component/pages/modify_network/modify_network.html';
 
 export {
     ModifyNetworkCtrl

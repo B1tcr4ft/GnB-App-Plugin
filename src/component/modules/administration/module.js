@@ -1,4 +1,9 @@
 import { PanelCtrl } from 'grafana/app/plugins/sdk';
+import {loadPluginCss} from 'grafana/app/plugins/sdk';
+
+loadPluginCss({
+  dark: 'plugins/gnb/css/gnb.dark.css'
+});
 
 // Remove up to here
 
@@ -29,6 +34,6 @@ class Ctrl extends PanelCtrl {
   
 }
 
-Ctrl.templateUrl = 'panels/partials/template.html';
+Ctrl.templateUrl = 'component/modules/administration/administration.html';
 
 export { Ctrl as PanelCtrl };

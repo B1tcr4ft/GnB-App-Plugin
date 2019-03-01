@@ -20,7 +20,7 @@
   },
 
   "includes": [
-    { "type": "dashboard", "name": "GnB App Dashboard" , "path": "dashboards/dashboard_example.json", "addToNav":  true, "defaultNav":  true},
+    { "type": "dashboard", "name": "GnB App Dashboard" , "path": "dashboards/dashboard_admin.json", "addToNav":  true, "defaultNav":  true},
     { "type": "page", "name": "Add Network", "component": "AddNetworkCtrl", "role": "Editor", "addToNav": false},
     { "type": "page", "name": "Modify Network", "component": "ModifyNetworkCtrl", "role": "Editor", "addToNav": false}
   ],

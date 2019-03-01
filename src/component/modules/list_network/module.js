@@ -6,14 +6,13 @@ class ListCtrl extends PanelCtrl {
 
     constructor($scope, $injector, $http) {
         super($scope, $injector);
-        this.initStyles();
         this.$http=$http;
         this.nets=[];
         this.getList();
         this.pageReady = false;
     }
 
-    initStyles() {
+    /*initStyles() {
         window.System.import(this.panelPath + 'css/style.css!');
     }
 
@@ -22,7 +21,7 @@ class ListCtrl extends PanelCtrl {
             this._panelPath = `/public/plugins/${this.pluginId}/`;
         }
         return this._panelPath;
-    }
+    }*/
 
     start(id){
         console.log(id);
@@ -41,6 +40,6 @@ class ListCtrl extends PanelCtrl {
 
 }
 
-ListCtrl.templateUrl = 'panels/partials/bayesian-list.html';
+ListCtrl.templateUrl = 'component/modules/list_network/list_network.html';
 
 export { ListCtrl as PanelCtrl };

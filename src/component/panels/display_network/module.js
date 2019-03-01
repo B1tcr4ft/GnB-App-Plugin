@@ -10,11 +10,11 @@ class NetCtrl extends PanelCtrl {
 
     initEditMode() {
         super.initEditMode();
-        this.addEditorTab('Network', 'public/plugins/gnb/panels/net/editor.html');
+        this.addEditorTab('Network', 'public/plugins/gnb/component/panels/display_network/display_network.html');
         this.editorTabIndex = 1;
     }
 
-    getGraph(){
+    getGraph() {
         let network = document.getElementById("networks");
         let idRete = null;
         this.networks.forEach(function(c){
@@ -45,7 +45,7 @@ class NetCtrl extends PanelCtrl {
     }
 }
 
-NetCtrl.templateUrl = 'public/plugins/gnb/component/net/net.html';
+NetCtrl.templateUrl = 'public/plugins/gnb/component/modules/display_network/display_network.html';
 
 export {
     NetCtrl as PanelCtrl

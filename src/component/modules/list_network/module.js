@@ -24,8 +24,23 @@ class ListCtrl extends PanelCtrl {
     }*/
 
     start(id){
-        console.log(id);
+        var req = {
+            method: 'GET',
+            url: 'https://api.bitcraftswe.it/api/start/'+id
+        };
+        this.$http(req)
+            .then((res)=>{console.log("rete avviata");})
     }
+
+    stop(id){
+        var req = {
+            method: 'GET',
+            url: 'https://api.bitcraftswe.it/api/stop/'+id
+        };
+        this.$http(req)
+            .then((res)=>{console.log("rete stoppata");})
+    }
+
     getList(){
         console.log("data");
         var self=this;

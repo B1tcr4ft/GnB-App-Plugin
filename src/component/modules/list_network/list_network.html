@@ -4,8 +4,10 @@
     <div class="gf-form-inline" ng-repeat="network in ctrl.networks">
         <div class="gf-form">
             <h4>{{network.name}}</h4>
-            <button class="btn btn-success" ng-click="ctrl.start(network.id)">Start</button>
-            <button class="btn btn-danger" ng-click="ctrl.stop(network.id)">Stop</button>
+            <div class="col-sm-6">
+                <button class="btn btn-success" ng-click="ctrl.start(network.id)">Start</button>
+                <button class="btn btn-danger" ng-click="ctrl.stop(network.id)">Stop</button>
+            </div>
         </div>
     </div>
 </div>

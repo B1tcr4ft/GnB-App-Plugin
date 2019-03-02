@@ -5,7 +5,7 @@
   "tags": ["GnB app"],
   "style": "dark",
   "timezone": "browser",
-  "editable": true,
+  "editable": false,
   "hideControls": true,
   "sharedCrosshair": false,
   "rows": [

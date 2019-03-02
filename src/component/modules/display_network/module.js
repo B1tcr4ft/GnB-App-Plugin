@@ -3,10 +3,12 @@ import { getNetworkList, getStaticGraph } from '../../../utils/network-util'
 
 //TODO handle errors
 class DisplayNetworkCtrl extends PanelCtrl {
+
     constructor($scope, $injector, $http) {
         super($scope, $injector);
         this.$http = $http;
 
+        this.networks = [];
         getNetworkList(this.$http).then(
             data => this.networks = data,
             error => console.log(error)
@@ -28,6 +30,7 @@ class DisplayNetworkCtrl extends PanelCtrl {
             error => console.log(error)
         );
     }
+
 }
 
 DisplayNetworkCtrl.templateUrl = 'public/plugins/gnb/component/modules/display_network/display_network.html';

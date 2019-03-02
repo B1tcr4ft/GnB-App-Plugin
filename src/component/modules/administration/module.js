@@ -10,13 +10,6 @@ class AdministrationCtrl extends PanelCtrl {
     super($scope, $injector);
   }
 
-  get panelPath() {
-    if (this._panelPath === undefined) {
-      this._panelPath = `/public/plugins/${this.pluginId}/`;
-    }
-    return this._panelPath;
-  }
-  
 }
 
 AdministrationCtrl.templateUrl = 'component/modules/administration/administration.html';

@@ -3,10 +3,12 @@ import {getNetworkList, startNetwork, stopNetwork} from '../../../utils/network-
 
 //TODO handle errors
 class ListNetworkCtrl extends PanelCtrl {
+
     constructor($scope, $injector, $http) {
         super($scope, $injector);
         this.$http=$http;
 
+        this.networks = [];
         getNetworkList(this.$http).then(
             data => this.networks = data,
             error => console.log(error)
@@ -20,6 +22,7 @@ class ListNetworkCtrl extends PanelCtrl {
     stop(networkID) {
         stopNetwork(this.$http, networkID).then(data => {}, error => console.log(error));
     }
+
 }
 
 ListNetworkCtrl.templateUrl = 'component/modules/list_network/list_network.html';

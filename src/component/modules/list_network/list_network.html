@@ -1,17 +1,13 @@
 <div ng-if="ctrl.networks==0">No networks found</div>
 
-<div class="gf-form-group">
-    <div class="gf-form-inline" ng-repeat="network in ctrl.networks">
-        <div class="gf-form">
-            <div class="row">
-                <div class="col-sm-6">
-                    <h4>{{network.name}}</h4>
-                </div>
-                <div class="col-sm-6">
-                    <button class="btn btn-success" ng-click="ctrl.start(network.id)">Start</button>
-                    <button class="btn btn-danger" ng-click="ctrl.stop(network.id)">Stop</button>
-                </div>
-            </div>
+<div class="container-fluid">
+    <div class="row" ng-repeat="network in ctrl.networks">
+        <div class="col-sm-6">
+            <h4>{{network.name}}</h4>
+        </div>
+        <div class="col-sm-6">
+            <button class="btn btn-success" ng-click="ctrl.start(network.id)">Start</button>
+            <button class="btn btn-danger" ng-click="ctrl.stop(network.id)">Stop</button>
         </div>
     </div>
 </div>

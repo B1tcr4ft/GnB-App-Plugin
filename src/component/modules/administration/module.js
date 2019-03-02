@@ -1,5 +1,4 @@
-import { PanelCtrl } from 'grafana/app/plugins/sdk';
-import {loadPluginCss} from 'grafana/app/plugins/sdk';
+import { PanelCtrl, loadPluginCss } from 'grafana/app/plugins/sdk';
 
 loadPluginCss({
   dark: 'plugins/gnb/css/gnb.dark.css'

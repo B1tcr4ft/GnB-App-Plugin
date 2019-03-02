@@ -1,5 +1,5 @@
 {
   "type": "panel",
   "name": "Network",
-  "id": "network"
+  "id": "display-network"
 }

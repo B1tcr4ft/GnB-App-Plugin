@@ -1,45 +1,25 @@
 import { PanelCtrl } from 'grafana/app/plugins/sdk';
+import {getNetworkList, startNetwork, stopNetwork} from '../../../utils/network-util'
 
+//TODO handle errors
 class ListNetworkCtrl extends PanelCtrl {
-
     constructor($scope, $injector, $http) {
         super($scope, $injector);
         this.$http=$http;
-        this.nets=[];
-        this.getList();
-        this.pageReady = false;
+
+        getNetworkList(this.$http).then(
+            data => this.networks = data,
+            error => console.log(error)
+        );
     }
 
-    start(id){
-        var req = {
-            method: 'GET',
-            url: 'https://api.bitcraftswe.it/api/start/'+id
-        };
-        this.$http(req)
-            .then((res)=>{console.log("rete avviata");})
+    start(networkID) {
+        startNetwork(this.$http, networkID).then(data => {}, error => console.log(error));
     }
 
-    stop(id){
-        var req = {
-            method: 'GET',
-            url: 'https://api.bitcraftswe.it/api/stop/'+id
-        };
-        this.$http(req)
-            .then((res)=>{console.log("rete stoppata");})
+    stop(networkID) {
+        stopNetwork(this.$http, networkID).then(data => {}, error => console.log(error));
     }
-
-    getList(){
-        console.log("data");
-        var self=this;
-        var req = {
-            method: 'GET',
-            url: 'https://api.bitcraftswe.it/api/retrieve/all'
-        };
-
-        this.$http(req)
-            .then((res)=>{this.nets=res.data;console.log(this.nets);this.pageReady=true}, (res)=>{console.log("non va")});
-    }
-
 }
 
 ListNetworkCtrl.templateUrl = 'component/modules/list_network/list_network.html';

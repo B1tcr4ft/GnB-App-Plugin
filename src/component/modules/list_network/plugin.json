@@ -1,5 +1,5 @@
 {
   "type": "panel",
   "name": "Bayesian networks list",
-  "id": "bayesian-list-panel"
+  "id": "list-network"
 }

@@ -33,6 +33,7 @@ class AddNetworkCtrl {
                     rete.databaseWriteUrl = c.url;
                     rete.databaseWriteUser = c.user;
                     rete.databaseWritePassword = c.password;*/
+                    //todo fix this
                     rete = Network.fromJSON(contents);
                 }
             });

@@ -10,7 +10,7 @@ class NetCtrl extends PanelCtrl {
 
     initEditMode() {
         super.initEditMode();
-        this.addEditorTab('Network', 'public/plugins/gnb/component/panels/display_network/display_network.html');
+        this.addEditorTab('Network', 'public/plugins/gnb/component/modules/display_network/edit/choose_network/choose_network.html');
         this.editorTabIndex = 1;
     }
 

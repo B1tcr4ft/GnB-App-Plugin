@@ -18,18 +18,18 @@ class AddNetworkCtrl {
         let r = new FileReader();
 
         r.onload = e => {
-            let contents = e.target.result;
+            let contents = JSON.parse(e.target.result);
             //let network = Network.fromJSON(contents);
             let database = document.getElementById("databases");
             let databaseID = this.databases.find(c => c.name === database.options[database.selectedIndex].text);
 
-            /*network.DBWriteName = databaseID.database;
-            network.DBWriteUrl = databaseID.url;
-            network.DBWriteUser = databaseID.user;
-            network.DBWritePassword = databaseID.password;*/
+            contents.databaseWriteName = databaseID.database;
+            contents.databaseWriteUrl = databaseID.url;
+            contents.databaseWriteUser = databaseID.user;
+            contents.databaseWritePassword = databaseID.password;
 
             //saveNetwork(this.$http, network.toJSON());
-            console.log(contents);
+            console.log(JSON.stringify(contents));
         };
         r.readAsText(f);
     }

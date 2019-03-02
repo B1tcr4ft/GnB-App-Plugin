@@ -1,8 +1,6 @@
 import { PanelCtrl } from 'grafana/app/plugins/sdk';
 
-// Remove up to here
-
-class ListCtrl extends PanelCtrl {
+class ListNetworkCtrl extends PanelCtrl {
 
     constructor($scope, $injector, $http) {
         super($scope, $injector);
@@ -11,17 +9,6 @@ class ListCtrl extends PanelCtrl {
         this.getList();
         this.pageReady = false;
     }
-
-    /*initStyles() {
-        window.System.import(this.panelPath + 'css/style.css!');
-    }
-
-    get panelPath() {
-        if (this._panelPath === undefined) {
-            this._panelPath = `/public/plugins/${this.pluginId}/`;
-        }
-        return this._panelPath;
-    }*/
 
     start(id){
         var req = {
@@ -55,6 +42,6 @@ class ListCtrl extends PanelCtrl {
 
 }
 
-ListCtrl.templateUrl = 'component/modules/list_network/list_network.html';
+ListNetworkCtrl.templateUrl = 'component/modules/list_network/list_network.html';
 
-export { ListCtrl as PanelCtrl };
+export { ListNetworkCtrl as PanelCtrl };

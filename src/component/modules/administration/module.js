@@ -5,7 +5,7 @@ loadPluginCss({
   dark: 'plugins/gnb/css/gnb.dark.css'
 });
 
-class Ctrl extends PanelCtrl {
+class AdministrationCtrl extends PanelCtrl {
 
   constructor($scope, $injector) {
     super($scope, $injector);
@@ -20,6 +20,6 @@ class Ctrl extends PanelCtrl {
   
 }
 
-Ctrl.templateUrl = 'component/modules/administration/administration.html';
+AdministrationCtrl.templateUrl = 'component/modules/administration/administration.html';
 
-export { Ctrl as PanelCtrl };
+export { AdministrationCtrl as PanelCtrl };

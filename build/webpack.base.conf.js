@@ -15,7 +15,7 @@ module.exports = {
   context: resolve('src'),
   entry: {
     './module': './module.js',
-    'component/panels/display_network/module': './component/panels/display_network/module.js',
+    'component/modules/display_network/module': './component/modules/display_network/module.js',
     'component/modules/list_network/module': './component/modules/list_network/module.js',
     'component/modules/administration/module': './component/modules/administration/module.js'
   },
@@ -39,7 +39,6 @@ module.exports = {
     new webpack.optimize.OccurrenceOrderPlugin(),
     new CopyWebpackPlugin([
       { from: '**/plugin.json' },
-      { from: 'panels/*' },
       { from: 'dashboards/*' },
       { from: 'component/*' },
       { from: '**/*.js' },

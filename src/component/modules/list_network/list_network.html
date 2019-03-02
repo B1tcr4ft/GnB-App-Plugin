@@ -6,8 +6,14 @@
             <h4>{{network.name}}</h4>
         </div>
         <div class="col-sm-6">
-            <button class="btn btn-success" ng-click="ctrl.start(network.id)">Start</button>
-            <button class="btn btn-danger" ng-click="ctrl.stop(network.id)">Stop</button>
+            <button class="btn btn-success" ng-click="ctrl.start(network.id)">
+                <i class="fa fa-play"></i>
+                Start
+            </button>
+            <button class="btn btn-danger" ng-click="ctrl.stop(network.id)">
+                <i class="fa fa-stop"></i>
+                Stop
+            </button>
         </div>
     </div>
 </div>

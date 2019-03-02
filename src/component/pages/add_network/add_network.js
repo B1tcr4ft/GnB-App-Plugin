@@ -1,6 +1,7 @@
 import {Network} from "gnb-network/es6";
 import { saveNetwork } from '../../../utils/network-util'
 
+//TODO handle errors
 class AddNetworkCtrl {
 
     constructor($scope, $injector, $http, backendSrv) {
@@ -19,7 +20,7 @@ class AddNetworkCtrl {
 
         r.onload = e => {
             let contents = JSON.parse(e.target.result);
-            //let network = Network.fromJSON(contents);
+            //let network = Network.fromJSON(contents); //TODO use Network class to check for errors
             let database = document.getElementById("databases");
             let databaseID = this.databases.find(c => c.name === database.options[database.selectedIndex].text);
 
@@ -28,8 +29,7 @@ class AddNetworkCtrl {
             contents.databaseWriteUser = databaseID.user;
             contents.databaseWritePassword = databaseID.password;
 
-            //saveNetwork(this.$http, network.toJSON());
-            console.log(JSON.stringify(contents));
+            saveNetwork(this.$http, contents).then(data => {}, error => console.log(error));
         };
         r.readAsText(f);
     }

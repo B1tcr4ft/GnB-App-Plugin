@@ -3,7 +3,7 @@ import {getNetwork, getNetworkList} from "../../../utils/network-util";
 //TODO handle errors
 class ModifyNetworkCtrl {
 
-    constructor($scope, $injector, $http, backendSrv) {
+    async constructor($scope, $injector, $http, backendSrv) {
         this.$scope = $scope;
         this.$injector = $injector;
         this.$http = $http;
@@ -13,7 +13,7 @@ class ModifyNetworkCtrl {
         this.backendSrv.get('api/datasources').then(data => this.databases = data.filter(db => db.type === "influxdb"));
 
         this.networks = [];
-        getNetworkList(this.$http).then(
+        await getNetworkList(this.$http).then(
             data => this.networks = data,
             error => console.log(error)
         );
@@ -25,11 +25,11 @@ class ModifyNetworkCtrl {
         this.databaseSelected = null;
     }
 
-    getNodeList() {
+    async getNodeList() {
         let network = document.getElementById("networks");
         let networkID = this.networks.find(c => c.name === network.options[network.selectedIndex].text).id;
 
-        getNetwork(this.$http, networkID).then(
+        await getNetwork(this.$http, networkID).then(
             data => {
                 this.nodes = data.nodes;
                 this.networkSelected = data;
@@ -38,7 +38,7 @@ class ModifyNetworkCtrl {
         );
     }
 
-    getTableList() {
+    async getTableList() {
         let database = document.getElementById("databases");
         this.databaseSelected = this.databases.find(c => c.name === database.options[database.selectedIndex].text);
 
@@ -52,14 +52,15 @@ class ModifyNetworkCtrl {
             url: databaseURL + '/query?u=' + databaseUsername + '&p=' + databasePassword + '&db=' + databaseName + "&q=SHOW FIELD KEYS"
         };
 
-        this.$http(req).then(res => {
+        await this.$http(req).then(res => {
+            console.log(res.data.results[0]);
             res.data.results[0].series.forEach(t =>this.tables.push(t));
         });
     }
 
-    getColumnList() {
+    async getColumnList() {
         let table = document.getElementById("tables");
-        this.columns = this.tables.find(c => c.name === table.options[table.selectedIndex].text).values;
+        this.columns = await this.tables.find(c => c.name === table.options[table.selectedIndex].text).values;
     }
 
     sendUpdates(){

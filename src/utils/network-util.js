@@ -1,4 +1,5 @@
 //TODO replace $http somehow
+//TODO replace API URL with config's url
 
 /**
  * Start a network with the given ID
@@ -49,6 +50,23 @@ export function saveNetwork($http, json) {
                 'Content-Type': 'application/json'
             },
             data: json
+        };
+
+        $http(req).then(res => resolve(res.data), error => reject(error));
+    });
+}
+
+/**
+ * Get a network with the given ID
+ * @param $http
+ * @param networkID
+ * @returns {Promise} the response data | the error
+ */
+export function getNetwork($http, networkID) {
+    return new Promise((resolve, reject) => {
+        let req = {
+            method: 'GET',
+            url: 'https://api.bitcraftswe.it/api/retrieve/' + networkID
         };
 
         $http(req).then(res => resolve(res.data), error => reject(error));

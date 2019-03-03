@@ -11,16 +11,16 @@ class AddNetworkCtrl {
         this.backendSrv = backendSrv;
 
         this.databases = [];
-        this.backendSrv.get('api/datasources').then(res => this.databases = res);
+        this.backendSrv.get('api/datasources').then(data => this.databases = data);
     }
 
     loadNetwork() {
-        let f = document.getElementById('upload').files[0];
-        let r = new FileReader();
+        let file = document.getElementById('upload').files[0];
+        let fileReader = new FileReader();
 
-        r.onload = e => {
-            let contents = JSON.parse(e.target.result);
-            //let network = Network.fromJSON(contents); //TODO use Network class to check for errors
+        fileReader.onload = event => {
+            let contents = JSON.parse(event.target.result);
+            //let network = Network.fromJSON(contents); //TODO use Network class to check for json errors
             let database = document.getElementById("databases");
             let databaseID = this.databases.find(c => c.name === database.options[database.selectedIndex].text);
 
@@ -31,7 +31,7 @@ class AddNetworkCtrl {
 
             saveNetwork(this.$http, contents).then(data => {}, error => console.log(error));
         };
-        r.readAsText(f);
+        fileReader.readAsText(file);
     }
 }
 

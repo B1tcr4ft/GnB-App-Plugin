@@ -5,12 +5,12 @@
 <div class="gf-form-group">
     <div class="gf-form-inline">
         <div class="gf-form">
-            <label class="gf-form-label" for="networks">Networks</label>
-            <select name="networks" id="networks" ng-options="network as network.name for network in ctrl.networks" ng-model="network" ng-change="ctrl.getNodes()">
-                <option value="" disabled selected hidden>Net</option>
+            <label class="gf-form-label" for="networks">Network</label>
+            <select name="networks" id="networks" ng-options="network as network.name for network in ctrl.networks" ng-model="network" ng-change="ctrl.getNodeList()">
+                <option value="" disabled selected hidden>Choose network</option>
             </select>
             <select name="nodes" id="nodes" ng-options="node as node.name for node in ctrl.nodes" ng-model="node" >
-                <option value="" disabled selected hidden>Node</option>
+                <option value="" disabled selected hidden>Choose node</option>
             </select>
         </div>
     </div>
@@ -18,15 +18,15 @@
         <div class="gf-form">
             <label class="gf-form-label" for="databases">Data Source</label>
             <select name="databases" id="databases" ng-options="database as database.name for database in ctrl.databases" ng-model="database" ng-change="ctrl.getTables()">
-                <option value="" disabled selected hidden>Database</option>
+                <option value="" disabled selected hidden>Choose database</option>
             </select>
             <select name="tables" id="tables" ng-options="table as table.name for table in ctrl.tables" ng-model="table" ng-change="ctrl.getColumns()">
-                <option value="" disabled selected hidden>Table</option>
+                <option value="" disabled selected hidden>Choose table</option>
             </select>
             <select name="columns" id="columns" ng-options="column as column[0] for column in ctrl.columns" ng-model="column">
-                <option value="" disabled selected hidden>Column</option>
+                <option value="" disabled selected hidden>Choose column</option>
             </select>
-            <button class="btn btn-success" ng-click="ctrl.sendUpdates()">Modifica rete</button>
+            <button class="btn btn-success" ng-click="ctrl.sendUpdates()">Save changes</button>
         </div>
     </div>
 </div>

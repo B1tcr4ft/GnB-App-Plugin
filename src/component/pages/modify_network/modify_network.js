@@ -1,3 +1,6 @@
+import {getNetwork, getNetworkList} from "../../../utils/network-util";
+
+//TODO handle errors
 class ModifyNetworkCtrl {
 
     constructor($scope, $injector, $http, backendSrv) {
@@ -7,61 +10,35 @@ class ModifyNetworkCtrl {
         this.backendSrv = backendSrv;
 
         this.databases = [];
+        this.backendSrv.get('api/datasources').then(data => this.databases = data.filter(db => db.type === "influxdb"));
+
         this.networks = [];
+        getNetworkList(this.$http).then(
+            data => this.networks = data,
+            error => console.log(error)
+        );
+
         this.nodes = [];
         this.tables = [];
         this.columns = [];
         this.networkSelected = null;
         this.databaseSelected = null;
-        this.getDatabases();
-        this.getNetworks();
     }
 
-    testInflux(db) {
-        return db.type === "influxdb";
-    }
-    getDatabases() {
-        this.backendSrv.get('api/datasources').then((res) => {
-            this.databases = res.filter(this.testInflux);
-        });
-    }
-
-    getNetworks() {
-        var req = {
-            method: 'GET',
-            //url: 'https://api.bitcraftswe.it/api/save/78',
-            url: 'https://api.bitcraftswe.it/api/retrieve/all'
-        };
-
-        this.$http(req).then((res) => {
-            this.networks = res.data;
-        });
-    }
-
-    getNodes(){
+    getNodeList() {
         let network = document.getElementById("networks");
-        var idRete = null;
-        this.networks.forEach(function(c){
-            if(c.name === network.options[network.selectedIndex].text) {
-                 idRete = c.id;
-            }
-        });
+        let networkID = this.networks.find(c => c.name === network.options[network.selectedIndex].text).id;
 
-        var req = {
-            method: 'GET',
-            url: 'https://api.bitcraftswe.it/api/retrieve/'+idRete
-        };
-
-        var self = this;
-        this.$http(req).then((res) => {
-            self.nodes = res.data.nodes;
-            this.networkSelected = res.data;
-            console.log(this.networkSelected);
-        });
-
+        getNetwork(this.$http, networkID).then(
+            data => {
+                this.nodes = data.nodes;
+                this.networkSelected = data;
+            },
+            error => console.log(error)
+        );
     }
 
-    getTables(){
+    getTables() {
         let database = document.getElementById("databases");
         let url;
         let name;

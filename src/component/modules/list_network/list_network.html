@@ -6,11 +6,11 @@
             <h4>{{network.name}}</h4>
         </div>
         <div class="col-sm-6">
-            <button class="btn btn-success" ng-click="ctrl.start(network.id, network.name)">
+            <button class="btn btn-success" ng-disabled="network.active" ng-click="ctrl.start(network.id, network.name)">
                 <i class="fa fa-play"></i>
                 Start
             </button>
-            <button class="btn btn-danger" ng-click="ctrl.stop(network.id, network.name)">
+            <button class="btn btn-danger" ng-disabled="!network.active" ng-click="ctrl.stop(network.id, network.name)">
                 <i class="fa fa-stop"></i>
                 Stop
             </button>

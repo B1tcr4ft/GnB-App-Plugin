@@ -22,7 +22,6 @@ class ListNetworkCtrl extends PanelCtrl {
                 appEvents.emit('alert-success', ['Network ' + networkName, data]);
             },
             error => {
-                console.log(error);
                 appEvents.emit('alert-warning', ['Network ' + networkName, error]);
             });
     }
@@ -33,7 +32,6 @@ class ListNetworkCtrl extends PanelCtrl {
                 appEvents.emit('alert-success', ['Network ' + networkName, data]);
             },
             error => {
-                console.log(error);
                 appEvents.emit('alert-warning', ['Network ' + networkName, error]);
             });
     }

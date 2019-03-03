@@ -13,16 +13,17 @@ class ModifyNetworkCtrl {
         this.backendSrv.get('api/datasources').then(data => this.databases = data.filter(db => db.type === "influxdb"));
 
         this.networks = [];
-        getNetworkList(this.$http).then(
-            data => this.networks = data,
-            error => console.log(error)
-        );
+        this.getNetworkListAsync().then(data => this.networks = data, error => console.log(error));
 
         this.nodes = [];
         this.tables = [];
         this.columns = [];
         this.networkSelected = null;
         this.databaseSelected = null;
+    }
+
+    async getNetworkListAsync() {
+        await getNetworkList(this.$http);
     }
 
     async getNodeList() {
@@ -53,7 +54,7 @@ class ModifyNetworkCtrl {
         };
 
         await this.$http(req).then(res => {
-            console.log(res.data.results[0]);
+            console.log(res.data.results[0].series.toString());
             res.data.results[0].series.forEach(t =>this.tables.push(t));
         });
     }

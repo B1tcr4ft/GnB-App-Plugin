@@ -2,7 +2,6 @@ import { PanelCtrl } from 'grafana/app/plugins/sdk';
 import { appEvents } from 'grafana/app/core/core';
 import {getNetworkList, startNetwork, stopNetwork} from '../../../utils/network-util'
 
-//TODO handle errors
 class ListNetworkCtrl extends PanelCtrl {
 
     constructor($scope, $injector, $http) {
@@ -12,29 +11,29 @@ class ListNetworkCtrl extends PanelCtrl {
         this.networks = [];
         getNetworkList(this.$http).then(
             data => this.networks = data,
-            error => console.log(error)
+            error => appEvents.emit('alert-error', ['GnB App Error', error])
         );
     }
 
-    start(networkID, networkName) {
-        startNetwork(this.$http, networkID).then(
+    start(network) {
+        startNetwork(this.$http, network.id).then(
             data => {
-                this.networks[networkID].active = true;
-                appEvents.emit('alert-success', ['Network ' + networkName, data]);
+                network.active = true;
+                appEvents.emit('alert-success', ['Network ' + network.name, data]);
             },
             error => {
-                appEvents.emit('alert-warning', ['Network ' + networkName, error]);
+                appEvents.emit('alert-warning', ['Network ' + network.name, error]);
             });
     }
 
-    stop(networkID, networkName) {
-        stopNetwork(this.$http, networkID).then(
+    stop(network) {
+        stopNetwork(this.$http, network.id).then(
             data => {
-                this.networks[networkID].active = false;
-                appEvents.emit('alert-success', ['Network ' + networkName, data]);
+                network.active = false;
+                appEvents.emit('alert-success', ['Network ' + network.name, data]);
             },
             error => {
-                appEvents.emit('alert-warning', ['Network ' + networkName, error]);
+                appEvents.emit('alert-warning', ['Network ' + network.name, error]);
             });
     }
 

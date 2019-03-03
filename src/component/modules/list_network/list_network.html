@@ -3,14 +3,15 @@
 <div class="container-fluid">
     <div class="row" ng-repeat="network in ctrl.networks">
         <div class="col-sm-6">
-            <h4>{{network.name}}{{network.active ? 'Running' : 'Not running'}}</h4>
+            <!--TODO fix span-->
+            <h4>{{network.name}} <span>({{network.active ? 'Running' : 'Not running'}})</span></h4>
         </div>
         <div class="col-sm-6">
-            <button class="btn btn-success" ng-disabled="network.active" ng-click="ctrl.start(network.id, network.name)">
+            <button class="btn btn-success" ng-disabled="network.active" ng-click="ctrl.start(network)">
                 <i class="fa fa-play"></i>
                 Start
             </button>
-            <button class="btn btn-danger" ng-disabled="!network.active" ng-click="ctrl.stop(network.id, network.name)">
+            <button class="btn btn-danger" ng-disabled="!network.active" ng-click="ctrl.stop(network)">
                 <i class="fa fa-stop"></i>
                 Stop
             </button>

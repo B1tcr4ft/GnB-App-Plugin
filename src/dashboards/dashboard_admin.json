@@ -33,7 +33,7 @@
     {
       "collapse": false,
       "editable": false,
-      "height": "300px",
+      "height": "250px",
       "panels": [
         {
           "editable": false,
@@ -41,9 +41,9 @@
           "id": 2,
           "links": [],
           "mode": "html",
-          "span": 6,
+          "span": 3,
           "style": {},
-          "title": "Administration",
+          "title": "",
           "transparent": false,
           "type": "administration-network"
         },
@@ -53,9 +53,9 @@
           "id": 3,
           "links": [],
           "mode": "html",
-          "span": 6,
+          "span": 4,
           "style": {},
-          "title": "Network List",
+          "title": "",
           "transparent": false,
           "type": "list-network"
           }

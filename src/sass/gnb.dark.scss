@@ -11,16 +11,25 @@ svg{
   /*border: 1px solid black;*/
   g{
     rect.node-shape{
-      border-radius: 5px !important; fill:#eb7b18 !important;
+      border-radius: 5px !important;
+      fill:#ffffff !important;
+      stroke: none !important;
     }
     rect.node-name{
       font-weight: 800 !important;
     }
     rect.node-bar{
-      fill: green !important;
+      fill: #0071c1 !important;
     }
     rect.node-value{
-      fill:rgb(0,0,0) !important; font-size: 15px;
+      fill: #000000 !important;
+      font-size: 15px !important;
+    }
+    text.node-pct{
+      fill: #ffffff !important;
+    }
+    text.node-value{
+      fill: #000000 !important;
     }
   }
   line.edge-line {

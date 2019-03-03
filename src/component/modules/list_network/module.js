@@ -4,9 +4,10 @@ import {getNetworkList, startNetwork, stopNetwork} from '../../../utils/network-
 //TODO handle errors
 class ListNetworkCtrl extends PanelCtrl {
 
-    constructor($scope, $injector, $http) {
+    constructor($scope, $injector, $http, alertSrv) {
         super($scope, $injector);
         this.$http=$http;
+        this.alertSrv = alertSrv;
 
         this.networks = [];
         getNetworkList(this.$http).then(
@@ -15,12 +16,26 @@ class ListNetworkCtrl extends PanelCtrl {
         );
     }
 
-    start(networkID) {
-        startNetwork(this.$http, networkID).then(data => {}, error => console.log(error));
+    start(networkID, networkName) {
+        startNetwork(this.$http, networkID).then(
+            data => {
+                this.alertSrv.set('Network ' + networkName, data, 'success', 5000);
+            },
+            error => {
+                console.log(error);
+                this.alertSrv.set('Network ' + networkName, error, 'error', 5000);
+            });
     }
 
-    stop(networkID) {
-        stopNetwork(this.$http, networkID).then(data => {}, error => console.log(error));
+    stop(networkID, networkName) {
+        stopNetwork(this.$http, networkID).then(
+            data => {
+                this.alertSrv.set('Network ' + networkName, data, 'success', 5000);
+            },
+            error => {
+                console.log(error);
+                this.alertSrv.set('Network ' + networkName, error, 'error', 5000);
+            });
     }
 
 }

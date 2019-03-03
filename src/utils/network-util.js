@@ -57,6 +57,23 @@ export function saveNetwork($http, json) {
 }
 
 /**
+ * Delete a network with the given ID
+ * @param $http
+ * @param networkID {string} id of the network
+ * @returns {Promise} the response data | the error
+ */
+export function deleteNetwork($http, networkID) {
+    return new Promise((resolve, reject) => {
+        let req = {
+            method: 'GET',
+            url: 'https://api.bitcraftswe.it/api/delete/' + networkID
+        };
+
+        $http(req).then(res => resolve(res.data), error => reject(error.data));
+    })
+}
+
+/**
  * Get a network with the given ID
  * @param $http
  * @param networkID

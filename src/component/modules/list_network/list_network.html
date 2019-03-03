@@ -4,7 +4,7 @@
     <div class="row" ng-repeat="network in ctrl.networks">
         <div class="col-sm-6">
             <!--TODO fix span-->
-            <h4>{{network.name}} <span>({{network.active ? 'Running' : 'Not running'}})</span></h4>
+            <h4>{{network.name}} <span id="active-network" ng-if="network.active">Running</span><span id="stopped-network" ng-if="!network.active">Not running</span></h4>
         </div>
         <div class="col-sm-6">
             <button class="btn btn-success" ng-disabled="network.active" ng-click="ctrl.start(network)">

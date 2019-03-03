@@ -1,6 +1,10 @@
-import { PanelCtrl } from 'grafana/app/plugins/sdk';
+import { PanelCtrl, loadPluginCss } from 'grafana/app/plugins/sdk';
 import { appEvents } from 'grafana/app/core/core';
 import {getNetworkList, startNetwork, stopNetwork} from '../../../utils/network-util'
+
+loadPluginCss({
+    dark: 'plugins/gnb/css/gnb.dark.css'
+});
 
 class ListNetworkCtrl extends PanelCtrl {
 
@@ -9,6 +13,10 @@ class ListNetworkCtrl extends PanelCtrl {
         this.$http=$http;
 
         this.networks = [];
+        this.updateNetworkList();
+    }
+
+    updateNetworkList() {
         getNetworkList(this.$http).then(
             data => this.networks = data,
             error => appEvents.emit('alert-error', ['GnB App Error', error])
@@ -18,7 +26,7 @@ class ListNetworkCtrl extends PanelCtrl {
     start(network) {
         startNetwork(this.$http, network.id).then(
             data => {
-                network.active = true;
+                this.updateNetworkList();
                 appEvents.emit('alert-success', ['Network ' + network.name, data]);
             },
             error => {
@@ -29,7 +37,7 @@ class ListNetworkCtrl extends PanelCtrl {
     stop(network) {
         stopNetwork(this.$http, network.id).then(
             data => {
-                network.active = false;
+                this.updateNetworkList();
                 appEvents.emit('alert-success', ['Network ' + network.name, data]);
             },
             error => {

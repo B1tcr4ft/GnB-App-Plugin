@@ -37,6 +37,4 @@ class AddNetworkCtrl {
 
 AddNetworkCtrl.templateUrl = 'public/plugins/gnb/component/pages/add_network/add_network.html';
 
-export {
-    AddNetworkCtrl
-};
+export { AddNetworkCtrl };

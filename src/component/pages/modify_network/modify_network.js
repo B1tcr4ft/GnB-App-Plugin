@@ -10,11 +10,9 @@ class ModifyNetworkCtrl {
         this.backendSrv = backendSrv;
 
         this.databases = [];
-        this.backendSrv.get('api/datasources').then(data => this.databases = data.filter(db => db.type === "influxdb"));
+
 
         this.networks = [];
-        this.getNetworkListAsync().then(data => this.networks = data, error => console.log(error));
-
         this.nodes = [];
         this.tables = [];
         this.columns = [];
@@ -22,8 +20,30 @@ class ModifyNetworkCtrl {
         this.databaseSelected = null;
     }
 
+    async getDatabaseListAsync() {
+        await this.backendSrv.get('api/datasources').then(
+            data => {
+                this.databases = data.filter(db => db.type === "influxdb");
+                return this.databases;
+            },
+            error => {
+                console.log(error);
+                return [];
+            }
+        );
+    }
+
     async getNetworkListAsync() {
-        await getNetworkList(this.$http);
+        await getNetworkList(this.$http).then(
+            data => {
+                this.networks = data;
+                return this.networks;
+            },
+            error => {
+                console.log(error);
+                return [];
+            }
+        );
     }
 
     async getNodeList() {
@@ -54,7 +74,6 @@ class ModifyNetworkCtrl {
         };
 
         await this.$http(req).then(res => {
-            console.log(res.data.results[0].series.toString());
             res.data.results[0].series.forEach(t =>this.tables.push(t));
         });
     }
@@ -64,28 +83,26 @@ class ModifyNetworkCtrl {
         this.columns = await this.tables.find(c => c.name === table.options[table.selectedIndex].text).values;
     }
 
-    sendUpdates(){
+    updateNetwork() {
         let table = document.getElementById("tables");
         let column = document.getElementById("columns");
         let node = document.getElementById("nodes");
-        let self = this;
+
         this.networkSelected.nodes.forEach(function(n){
            if (n.name === node.options[node.selectedIndex].text){
-               n.sensor.databaseSensorUrl = self.databaseSelected.url;
-               n.sensor.databaseSensorUser = self.databaseSelected.user;
-               n.sensor.databaseSensorPassword = self.databaseSelected.password;
-               n.sensor.databaseSensorName = self.databaseSelected.database;
+               n.sensor.databaseSensorUrl = this.databaseSelected.url;
+               n.sensor.databaseSensorUser = this.databaseSelected.user;
+               n.sensor.databaseSensorPassword = this.databaseSelected.password;
+               n.sensor.databaseSensorName = this.databaseSelected.database;
                n.sensor.databaseSensorTable = table.options[table.selectedIndex].text;
                n.sensor.databaseSensorColumn = column.options[column.selectedIndex].text;
            }
         });
-        //TODO UPDATE rete esistente sul server
-        console.log(this.networkSelected);
+
+        console.log(this.networkSelected); //TODO UPDATE rete esistente sul server
     }
 }
 
 ModifyNetworkCtrl.templateUrl = 'public/plugins/gnb/component/pages/modify_network/modify_network.html';
 
-export {
-    ModifyNetworkCtrl
-};
+export { ModifyNetworkCtrl };

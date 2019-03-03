@@ -1,7 +1,7 @@
+import { appEvents } from 'grafana/app/core/core';
 import {Network} from "gnb-network/es6";
 import { saveNetwork } from '../../../utils/network-util'
 
-//TODO handle errors
 class AddNetworkCtrl {
 
     constructor($scope, $injector, $http, backendSrv) {
@@ -13,7 +13,7 @@ class AddNetworkCtrl {
         this.databases = [];
         this.backendSrv.get('api/datasources').then(
             data => this.databases = data,
-            error => console.log(error)
+            error => appEvents.emit('alert-error', ['GnB App Error', error])
         );
     }
 
@@ -32,7 +32,10 @@ class AddNetworkCtrl {
             contents.databaseWriteUser = databaseID.user;
             contents.databaseWritePassword = databaseID.password;
 
-            saveNetwork(this.$http, contents).then(data => {}, error => console.log(error));
+            saveNetwork(this.$http, contents).then(
+                data => appEvents.emit('alert-success', ['Network ' + contents.name, data]),
+                error => appEvents.emit('alert-warning', ['Network ' + contents.name, error])
+            );
         };
         fileReader.readAsText(file);
     }

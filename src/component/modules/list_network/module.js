@@ -25,9 +25,8 @@ class ListNetworkCtrl extends PanelCtrl {
                 network.active = true;
                 appEvents.emit('alert-success', ['Network ' + network.name, data]);
             },
-            error => {
-                appEvents.emit('alert-warning', ['Network ' + network.name, error]);
-            });
+            error => appEvents.emit('alert-warning', ['Network ' + network.name, error])
+        );
     }
 
     stop(network) {
@@ -36,9 +35,8 @@ class ListNetworkCtrl extends PanelCtrl {
                 network.active = false;
                 appEvents.emit('alert-success', ['Network ' + network.name, data]);
             },
-            error => {
-                appEvents.emit('alert-warning', ['Network ' + network.name, error]);
-            });
+            error => appEvents.emit('alert-warning', ['Network ' + network.name, error])
+        );
     }
 
 }

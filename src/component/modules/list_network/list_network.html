@@ -3,7 +3,7 @@
 <div class="container-fluid">
     <div class="row" ng-repeat="network in ctrl.networks">
         <div class="col-sm-6">
-            <!--TODO fix span-->
+            <!--TODO update active parameter-->
             <h4>{{network.name}} <span id="active-network" ng-if="network.active">Running</span><span id="stopped-network" ng-if="!network.active">Not running</span></h4>
         </div>
         <div class="col-sm-6">

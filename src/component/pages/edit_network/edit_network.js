@@ -1,6 +1,6 @@
+import { appEvents } from 'grafana/app/core/core';
 import {getNetwork, getNetworkList} from "../../../utils/network-util";
 
-//TODO handle errors
 class ModifyNetworkCtrl {
 
     constructor($scope, $injector, $http, backendSrv) {
@@ -12,13 +12,13 @@ class ModifyNetworkCtrl {
         this.databases = [];
         this.backendSrv.get('api/datasources').then(
             data => this.databases = data.filter(db => db.type === "influxdb"),
-            error => console.log(error)
+            error => appEvents.emit('alert-error', ['GnB App Error', error])
         );
 
         this.networks = [];
         getNetworkList(this.$http).then(
             data => this.networks = data,
-            error => console.log(error)
+            error => appEvents.emit('alert-error', ['GnB App Error', error])
         );
 
         this.nodes = [];
@@ -37,7 +37,7 @@ class ModifyNetworkCtrl {
                 this.nodes = data.nodes;
                 this.networkSelected = data;
             },
-            error => console.log(error)
+            error => appEvents.emit('alert-error', ['GnB App Error', error])
         );
     }
 
@@ -55,9 +55,10 @@ class ModifyNetworkCtrl {
             url: databaseURL + '/query?u=' + databaseUsername + '&p=' + databasePassword + '&db=' + databaseName + "&q=SHOW FIELD KEYS"
         };
 
-        this.$http(req).then(res => {
-            res.data.results[0].series.forEach(t =>this.tables.push(t));
-        });
+        this.$http(req).then(
+            res => res.data.results[0].series.forEach(t =>this.tables.push(t)),
+            error => appEvents.emit('alert-error', ['GnB App Error', error])
+        );
     }
 
     getColumnList() {

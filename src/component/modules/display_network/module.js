@@ -1,7 +1,7 @@
 import { PanelCtrl } from 'grafana/app/plugins/sdk';
+import { appEvents } from 'grafana/app/core/core';
 import { getNetworkList, getStaticGraph } from '../../../utils/network-util'
 
-//TODO handle errors
 class DisplayNetworkCtrl extends PanelCtrl {
 
     constructor($scope, $injector, $http) {
@@ -11,7 +11,7 @@ class DisplayNetworkCtrl extends PanelCtrl {
         this.networks = [];
         getNetworkList(this.$http).then(
             data => this.networks = data,
-            error => console.log(error)
+            error => appEvents.emit('alert-error', ['GnB App Error', error])
         );
     }
 
@@ -23,11 +23,11 @@ class DisplayNetworkCtrl extends PanelCtrl {
 
     displayGraph() {
         let network = document.getElementById("networks");
-        let networkID = this.networks.find(c => c.name === network.options[network.selectedIndex].text).id;
+        let networkID = this.networks.find(c => c.name === network.options[network.selectedIndex].text);
 
-        getStaticGraph(this.$http, networkID).then(
+        getStaticGraph(this.$http, networkID.id).then(
             data => document.getElementById("wrapper-bbn").innerHTML = data,
-            error => console.log(error)
+            error => appEvents.emit('alert-warning', ['Network ' + networkID.name, error])
         );
     }
 

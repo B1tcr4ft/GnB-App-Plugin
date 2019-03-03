@@ -3,7 +3,7 @@ import {getNetwork, getNetworkList} from "../../../utils/network-util";
 //TODO handle errors
 class ModifyNetworkCtrl {
 
-    async constructor($scope, $injector, $http, backendSrv) {
+    constructor($scope, $injector, $http, backendSrv) {
         this.$scope = $scope;
         this.$injector = $injector;
         this.$http = $http;
@@ -13,7 +13,7 @@ class ModifyNetworkCtrl {
         this.backendSrv.get('api/datasources').then(data => this.databases = data.filter(db => db.type === "influxdb"));
 
         this.networks = [];
-        await getNetworkList(this.$http).then(
+        getNetworkList(this.$http).then(
             data => this.networks = data,
             error => console.log(error)
         );

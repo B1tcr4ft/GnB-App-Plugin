@@ -32,12 +32,16 @@ svg{
   }
 }
 
+#active-network, #stopped-network {
+  font-size: 1.0rem;
+  font-weight: bold;
+  margin-left: 1em;
+}
+
 #active-network {
-  font-size: 0.5rem;
   color: #008000;
 }
 
 #stopped-network {
-  font-size: 0.5rem;
   color: #8b0000;
 }

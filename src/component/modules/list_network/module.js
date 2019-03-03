@@ -13,10 +13,6 @@ class ListNetworkCtrl extends PanelCtrl {
         this.$http=$http;
 
         this.networks = [];
-        this.updateNetworkList();
-    }
-
-    updateNetworkList() {
         getNetworkList(this.$http).then(
             data => this.networks = data,
             error => appEvents.emit('alert-error', ['GnB App Error', error])
@@ -26,7 +22,7 @@ class ListNetworkCtrl extends PanelCtrl {
     start(network) {
         startNetwork(this.$http, network.id).then(
             data => {
-                this.updateNetworkList();
+                network.active = true;
                 appEvents.emit('alert-success', ['Network ' + network.name, data]);
             },
             error => {
@@ -37,7 +33,7 @@ class ListNetworkCtrl extends PanelCtrl {
     stop(network) {
         stopNetwork(this.$http, network.id).then(
             data => {
-                this.updateNetworkList();
+                network.active = false;
                 appEvents.emit('alert-success', ['Network ' + network.name, data]);
             },
             error => {

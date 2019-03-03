@@ -5,10 +5,9 @@ import {getNetworkList, startNetwork, stopNetwork} from '../../../utils/network-
 //TODO handle errors
 class ListNetworkCtrl extends PanelCtrl {
 
-    constructor($scope, $injector, $http, alertSrv) {
+    constructor($scope, $injector, $http) {
         super($scope, $injector);
         this.$http=$http;
-        this.alertSrv = alertSrv;
 
         this.networks = [];
         getNetworkList(this.$http).then(

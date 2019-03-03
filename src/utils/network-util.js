@@ -14,7 +14,7 @@ export function startNetwork($http, networkID) {
             url: 'https://api.bitcraftswe.it/api/start/' + networkID
         };
 
-        $http(req).then(res => resolve(res.data), error => reject(error));
+        $http(req).then(res => resolve(res.data), error => reject(error.data));
     });
 }
 

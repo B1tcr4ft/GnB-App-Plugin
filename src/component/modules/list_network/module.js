@@ -1,5 +1,5 @@
 import { PanelCtrl } from 'grafana/app/plugins/sdk';
-import { appEvents } from 'app/core/core';
+import { appEvents } from 'grafana/app/core/core';
 import {getNetworkList, startNetwork, stopNetwork} from '../../../utils/network-util'
 
 //TODO handle errors

@@ -38,44 +38,28 @@ class ModifyNetworkCtrl {
         );
     }
 
-    getTables() {
+    getTableList() {
         let database = document.getElementById("databases");
-        let url;
-        let name;
-        this.tables = [];
-        let self = this;
-        this.databases.forEach(function(c) {
-            if (c.name === database.options[database.selectedIndex].text) { //appena trovo il database giusto aggiungo nel json della rete
-                self.databaseSelected = c;
-                url = c.url;
-                name = c.database;
-            }
-        });
+        this.databaseSelected = this.databases.find(c => c.name === database.options[database.selectedIndex].text);
 
-        var req = {
+        let databaseURL = this.databaseSelected.url;
+        let databaseName = this.databaseSelected.database;
+        let databaseUsername = this.databaseSelected.user;
+        let databasePassword = this.databaseSelected.password;
+
+        let req = {
             method: 'GET',
-            url: url+'/query?db='+name+"&q=SHOW FIELD KEYS"
-
+            url: databaseURL + '/query?u=' + databaseUsername + '&p=' + databasePassword + '&db=' + databaseName + "&q=SHOW FIELD KEYS"
         };
 
-        this.$http(req).then((res) => {
-            res.data.results[0].series.forEach(function (t){
-                self.tables.push(t);
-            });
+        this.$http(req).then(res => {
+            res.data.results[0].series.forEach(t =>this.tables.push(t));
         });
     }
 
-    getColumns(){
-        let self = this;
+    getColumnList() {
         let table = document.getElementById("tables");
-        this.columns = [];
-        this.tables.forEach(function (t) {
-            if (t.name === table.options[table.selectedIndex].text){
-                t.values.forEach(function(c){
-                    self.columns.push(c);
-                });
-            }
-        });
+        this.columns = this.tables.find(c => c.name === table.options[table.selectedIndex].text).values;
     }
 
     sendUpdates(){

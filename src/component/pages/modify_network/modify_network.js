@@ -10,9 +10,17 @@ class ModifyNetworkCtrl {
         this.backendSrv = backendSrv;
 
         this.databases = [];
-
+        this.backendSrv.get('api/datasources').then(
+            data => this.databases = data.filter(db => db.type === "influxdb"),
+            error => console.log(error)
+        );
 
         this.networks = [];
+        getNetworkList(this.$http).then(
+            data => this.networks = data,
+            error => console.log(error)
+        );
+
         this.nodes = [];
         this.tables = [];
         this.columns = [];
@@ -20,37 +28,11 @@ class ModifyNetworkCtrl {
         this.databaseSelected = null;
     }
 
-    async getDatabaseListAsync() {
-        await this.backendSrv.get('api/datasources').then(
-            data => {
-                this.databases = data.filter(db => db.type === "influxdb");
-                return this.databases;
-            },
-            error => {
-                console.log(error);
-                return [];
-            }
-        );
-    }
-
-    async getNetworkListAsync() {
-        await getNetworkList(this.$http).then(
-            data => {
-                this.networks = data;
-                return this.networks;
-            },
-            error => {
-                console.log(error);
-                return [];
-            }
-        );
-    }
-
-    async getNodeList() {
+    getNodeList() {
         let network = document.getElementById("networks");
         let networkID = this.networks.find(c => c.name === network.options[network.selectedIndex].text).id;
 
-        await getNetwork(this.$http, networkID).then(
+        getNetwork(this.$http, networkID).then(
             data => {
                 this.nodes = data.nodes;
                 this.networkSelected = data;
@@ -59,7 +41,7 @@ class ModifyNetworkCtrl {
         );
     }
 
-    async getTableList() {
+    getTableList() {
         let database = document.getElementById("databases");
         this.databaseSelected = this.databases.find(c => c.name === database.options[database.selectedIndex].text);
 
@@ -73,33 +55,30 @@ class ModifyNetworkCtrl {
             url: databaseURL + '/query?u=' + databaseUsername + '&p=' + databasePassword + '&db=' + databaseName + "&q=SHOW FIELD KEYS"
         };
 
-        await this.$http(req).then(res => {
+        this.$http(req).then(res => {
             res.data.results[0].series.forEach(t =>this.tables.push(t));
         });
     }
 
-    async getColumnList() {
+    getColumnList() {
         let table = document.getElementById("tables");
-        this.columns = await this.tables.find(c => c.name === table.options[table.selectedIndex].text).values;
+        this.columns = this.tables.find(c => c.name === table.options[table.selectedIndex].text).values;
     }
 
     updateNetwork() {
         let table = document.getElementById("tables");
         let column = document.getElementById("columns");
         let node = document.getElementById("nodes");
+        let nodeID = this.networkSelected.nodes.find(c => c.name === node.options[node.selectedIndex].text);
 
-        this.networkSelected.nodes.forEach(function(n){
-           if (n.name === node.options[node.selectedIndex].text){
-               n.sensor.databaseSensorUrl = this.databaseSelected.url;
-               n.sensor.databaseSensorUser = this.databaseSelected.user;
-               n.sensor.databaseSensorPassword = this.databaseSelected.password;
-               n.sensor.databaseSensorName = this.databaseSelected.database;
-               n.sensor.databaseSensorTable = table.options[table.selectedIndex].text;
-               n.sensor.databaseSensorColumn = column.options[column.selectedIndex].text;
-           }
-        });
+        nodeID.sensor.databaseSensorUrl = this.databaseSelected.url;
+        nodeID.sensor.databaseSensorUser = this.databaseSelected.user;
+        nodeID.sensor.databaseSensorPassword = this.databaseSelected.password;
+        nodeID.sensor.databaseSensorName = this.databaseSelected.database;
+        nodeID.sensor.databaseSensorTable = table.options[table.selectedIndex].text;
+        nodeID.sensor.databaseSensorColumn = column.options[column.selectedIndex].text;
 
-        console.log(this.networkSelected); //TODO UPDATE rete esistente sul server
+        console.log(nodeID); //TODO UPDATE rete esistente sul server
     }
 }
 

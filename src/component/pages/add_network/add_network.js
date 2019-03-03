@@ -11,7 +11,10 @@ class AddNetworkCtrl {
         this.backendSrv = backendSrv;
 
         this.databases = [];
-        this.backendSrv.get('api/datasources').then(data => this.databases = data);
+        this.backendSrv.get('api/datasources').then(
+            data => this.databases = data,
+            error => console.log(error)
+        );
     }
 
     loadNetwork() {

@@ -6,7 +6,7 @@
     <div class="gf-form-inline">
         <div class="gf-form">
             <label class="gf-form-label" for="networks">Network</label>
-            <select name="networks" id="networks" ng-options="network as network.name for network in ctrl.getNetworkListAsync()" ng-model="network" ng-change="ctrl.getNodeList()">
+            <select name="networks" id="networks" ng-options="network as network.name for network in ctrl.networks" ng-model="network" ng-change="ctrl.getNodeList()">
                 <option value="" disabled selected hidden>Choose network</option>
             </select>
             <select name="nodes" id="nodes" ng-options="node as node.name for node in ctrl.nodes" ng-model="node" >
@@ -17,7 +17,7 @@
     <div class="gf-form-inline">
         <div class="gf-form">
             <label class="gf-form-label" for="databases">Data Source</label>
-            <select name="databases" id="databases" ng-options="database as database.name for database in ctrl.getDatabaseListAsync()" ng-model="database" ng-change="ctrl.getTableList()">
+            <select name="databases" id="databases" ng-options="database as database.name for database in ctrl.databases" ng-model="database" ng-change="ctrl.getTableList()">
                 <option value="" disabled selected hidden>Choose database</option>
             </select>
             <select name="tables" id="tables" ng-options="table as table.name for table in ctrl.tables" ng-model="table" ng-change="ctrl.getColumnList()">

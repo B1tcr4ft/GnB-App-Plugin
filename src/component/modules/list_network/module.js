@@ -19,6 +19,7 @@ class ListNetworkCtrl extends PanelCtrl {
     start(networkID, networkName) {
         startNetwork(this.$http, networkID).then(
             data => {
+                this.networks[networkID].active = true;
                 appEvents.emit('alert-success', ['Network ' + networkName, data]);
             },
             error => {
@@ -29,6 +30,7 @@ class ListNetworkCtrl extends PanelCtrl {
     stop(networkID, networkName) {
         stopNetwork(this.$http, networkID).then(
             data => {
+                this.networks[networkID].active = false;
                 appEvents.emit('alert-success', ['Network ' + networkName, data]);
             },
             error => {

@@ -31,7 +31,7 @@ export function stopNetwork($http, networkID) {
             url: 'https://api.bitcraftswe.it/api/stop/' + networkID
         };
 
-        $http(req).then(res => resolve(res.data), error => reject(error));
+        $http(req).then(res => resolve(res.data), error => reject(error.data));
     });
 }
 
@@ -52,7 +52,7 @@ export function saveNetwork($http, json) {
             data: json
         };
 
-        $http(req).then(res => resolve(res.data), error => reject(error));
+        $http(req).then(res => resolve(res.data), error => reject(error.data));
     });
 }
 
@@ -69,7 +69,7 @@ export function getNetwork($http, networkID) {
             url: 'https://api.bitcraftswe.it/api/retrieve/' + networkID
         };
 
-        $http(req).then(res => resolve(res.data), error => reject(error));
+        $http(req).then(res => resolve(res.data), error => reject(error.data));
     });
 }
 
@@ -85,7 +85,7 @@ export function getNetworkList($http) {
             url: 'https://api.bitcraftswe.it/api/retrieve/all'
         };
 
-        $http(req).then(res => resolve(res.data), error => reject(error));
+        $http(req).then(res => resolve(res.data), error => reject(error.data));
     });
 }
 
@@ -103,6 +103,6 @@ export function getStaticGraph($http, networkID) {
             url: 'https://api.bitcraftswe.it/api/static-graph/' + networkID
         };
 
-        $http(req).then(res => resolve(res.data), error => reject(error));
+        $http(req).then(res => resolve(res.data), error => reject(error.data));
     });
 }

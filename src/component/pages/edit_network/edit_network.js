@@ -82,6 +82,6 @@ class ModifyNetworkCtrl {
     }
 }
 
-ModifyNetworkCtrl.templateUrl = 'public/plugins/gnb/component/pages/modify_network/modify_network.html';
+ModifyNetworkCtrl.templateUrl = 'public/plugins/gnb/component/pages/edit_network/edit_network.html';
 
 export { ModifyNetworkCtrl };

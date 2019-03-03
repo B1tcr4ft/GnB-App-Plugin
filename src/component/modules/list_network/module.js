@@ -1,4 +1,5 @@
 import { PanelCtrl } from 'grafana/app/plugins/sdk';
+import { appEvents } from 'app/core/core';
 import {getNetworkList, startNetwork, stopNetwork} from '../../../utils/network-util'
 
 //TODO handle errors
@@ -19,22 +20,22 @@ class ListNetworkCtrl extends PanelCtrl {
     start(networkID, networkName) {
         startNetwork(this.$http, networkID).then(
             data => {
-                this.alertSrv.set('Network ' + networkName, data, 'success', 5000);
+                appEvents.emit('alert-success', ['Network ' + networkName, data]);
             },
             error => {
                 console.log(error);
-                this.alertSrv.set('Network ' + networkName, error, 'error', 5000);
+                appEvents.emit('alert-warning', ['Network ' + networkName, error]);
             });
     }
 
     stop(networkID, networkName) {
         stopNetwork(this.$http, networkID).then(
             data => {
-                this.alertSrv.set('Network ' + networkName, data, 'success', 5000);
+                appEvents.emit('alert-success', ['Network ' + networkName, data]);
             },
             error => {
                 console.log(error);
-                this.alertSrv.set('Network ' + networkName, error, 'error', 5000);
+                appEvents.emit('alert-warning', ['Network ' + networkName, error]);
             });
     }
 

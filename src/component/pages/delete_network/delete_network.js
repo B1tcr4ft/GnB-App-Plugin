@@ -3,11 +3,10 @@ import {deleteNetwork, getNetworkList} from '../../../utils/network-util'
 
 class DeleteNetworkCtrl {
 
-    constructor($scope, $injector, $http, backendSrv) {
+    constructor($scope, $injector, $http) {
         this.$scope = $scope;
         this.$injector = $injector;
         this.$http = $http;
-        this.backendSrv = backendSrv;
 
         this.networks = [];
         getNetworkList(this.$http).then(

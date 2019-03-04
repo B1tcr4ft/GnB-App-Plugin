@@ -1,5 +1,6 @@
 import './sass/gnb.dark.scss';
 
+import {CreateNetworkCtrl} from "./component/pages/create_network/create_network";
 import {AddNetworkCtrl} from './component/pages/add_network/add_network';
 import {ModifyNetworkCtrl} from './component/pages/edit_network/edit_network';
 import {DeleteNetworkCtrl} from "./component/pages/delete_network/delete_network";
@@ -11,6 +12,7 @@ loadPluginCss({
 });
 
 export {
+    CreateNetworkCtrl,
     AddNetworkCtrl,
     ModifyNetworkCtrl,
     DeleteNetworkCtrl,

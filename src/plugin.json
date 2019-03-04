@@ -21,6 +21,7 @@
 
   "includes": [
     { "type": "dashboard", "name": "GnB App Dashboard" , "path": "dashboards/dashboard_admin.json", "addToNav":  true, "defaultNav":  true},
+    { "type": "page", "name": "Create Network", "component": "CreateNetworkCtrl", "role": "Editor", "addToNav": false},
     { "type": "page", "name": "Add Network", "component": "AddNetworkCtrl", "role": "Editor", "addToNav": false},
     { "type": "page", "name": "Modify Network", "component": "ModifyNetworkCtrl", "role": "Editor", "addToNav": false},
     { "type": "page", "name": "Delete Network", "component": "DeleteNetworkCtrl", "role": "Editor", "addToNav": false}

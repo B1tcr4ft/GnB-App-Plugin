@@ -2,7 +2,7 @@ import { PanelCtrl } from 'grafana/app/plugins/sdk';
 import {alert,AlertType} from "../../../utils/alert-util";
 import { getNetworkList, getDynamicGraph } from '../../../utils/network-util'
 
-class DisplayNetworkCtrl extends PanelCtrl {
+class DisplayDynamicNetworkCtrl extends PanelCtrl {
 
     constructor($scope, $injector, $http) {
         super($scope, $injector);
@@ -15,12 +15,12 @@ class DisplayNetworkCtrl extends PanelCtrl {
             error => alert(AlertType.ERROR, 'GnB App Error', error)
         );
 
-        $scope.ctrl.events.on('refresh', this.displayGraph.bind(this));
+        $scope.ctrl.events.on('refresh', this.refreshGraph.bind(this));
     }
 
     initEditMode() {
         super.initEditMode();
-        this.addEditorTab('Network', 'public/plugins/gnb/component/modules/display_network/edit/choose_network.html');
+        this.addEditorTab('Network', 'public/plugins/gnb/component/modules/display_dynamic_network/edit/choose_network.html');
         this.editorTabIndex = 1;
     }
 
@@ -28,11 +28,10 @@ class DisplayNetworkCtrl extends PanelCtrl {
         let network = document.getElementById("networks");
         this.networkID = this.networks.find(c => c.name === network.options[network.selectedIndex].text);
 
-        //this.displayGraph();
+        this.refreshGraph();
     }
 
-    displayGraph() {
-        console.log("REFRESH");
+    refreshGraph() {
         if(this.networkID !== undefined) {
             getDynamicGraph(this.$http, this.networkID.id).then(
                 data => document.getElementById("wrapper-bbn").innerHTML = data,
@@ -43,6 +42,6 @@ class DisplayNetworkCtrl extends PanelCtrl {
 
 }
 
-DisplayNetworkCtrl.templateUrl = 'public/plugins/gnb/component/modules/display_network/display_network.html';
+DisplayDynamicNetworkCtrl.templateUrl = 'public/plugins/gnb/component/modules/display_dynamic_network/display_dynamic_network.html';
 
-export { DisplayNetworkCtrl as PanelCtrl };
+export { DisplayDynamicNetworkCtrl as PanelCtrl };

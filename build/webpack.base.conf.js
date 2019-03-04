@@ -15,7 +15,8 @@ module.exports = {
   context: resolve('src'),
   entry: {
     './module': './module.js',
-    'component/modules/display_network/module': './component/modules/display_network/module.js',
+    'component/modules/display_static_network/module': './component/modules/display_static_network/module.js',
+    'component/modules/display_dynamic_network/module': './component/modules/display_dynamic_network/module.js',
     'component/modules/list_network/module': './component/modules/list_network/module.js',
     'component/modules/administration/module': './component/modules/administration/module.js'
   },

@@ -1,5 +1,5 @@
 import { PanelCtrl } from 'grafana/app/plugins/sdk';
-import { appEvents } from 'grafana/app/core/app_events';
+import { appEvents } from 'grafana/app/core/core';
 import {alert,AlertType} from "../../../utils/alert-util";
 import { getNetworkList, getDynamicGraph } from '../../../utils/network-util'
 

@@ -21,8 +21,8 @@ class DeleteNetworkCtrl {
         let networkID = this.networks.find(c => c.name === network.options[network.selectedIndex].text);
 
         deleteNetwork(this.$http, networkID.id).then(
-            data => appEvents.emit('alert-success', ['Network ' + networkID, data]),
-            error => appEvents.emit('alert-warning', ['Network ' + networkID, error])
+            data => appEvents.emit('alert-success', ['Network ' + networkID.name, data]),
+            error => appEvents.emit('alert-warning', ['Network ' + networkID.name, error])
         );
     }
 

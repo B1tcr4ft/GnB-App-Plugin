@@ -24,14 +24,14 @@ class AddNetworkCtrl {
 
         fileReader.onload = event => {
             let contents = JSON.parse(event.target.result);
-            let network = Network.fromJSON(contents); //TODO use Network class to check for json errors
+            let network = Network.fromJSON(contents);
             let database = document.getElementById("databases");
             let databaseID = this.databases.find(c => c.name === database.options[database.selectedIndex].text);
 
-            network.DBWriteUrl = databaseID.database;
-            network.DBWriteUrl = databaseID.url;
-            network.DBWriteUser = databaseID.user;
-            network.DBWritePassword = databaseID.password;
+            network.setDatabase(
+                databaseID.database, databaseID.url,
+                databaseID.user, databaseID.password
+            );
 
             console.log(JSON.stringify(network.toJSON()));
             saveNetwork(this.$http, network.toJSON()).then(

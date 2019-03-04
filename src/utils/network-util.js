@@ -11,7 +11,10 @@ export function startNetwork($http, networkID) {
     return new Promise((resolve, reject) => {
         let req = {
             method: 'GET',
-            url: 'https://api.bitcraftswe.it/api/start/' + networkID
+            url: 'https://api.bitcraftswe.it/api/start/' + networkID,
+            headers: {
+                'Access-Control-Allow-Origin': '*'
+            }
         };
 
         $http(req).then(res => resolve(res.data), error => reject(error.data));
@@ -47,8 +50,7 @@ export function saveNetwork($http, json) {
             method: 'POST',
             url: 'https://api.bitcraftswe.it/api/save',
             headers: {
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*'
+                'Content-Type': 'application/json'
             },
             data: json
         };

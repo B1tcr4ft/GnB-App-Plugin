@@ -1,9 +1,10 @@
-<div ng-if="ctrl.networks==0">No networks found</div>
-
 <div class="container-fluid">
     <div class="page header">
         <h1>Network list</h1>
     </div>
+
+    <div ng-if="ctrl.networks==0">No networks found</div>
+
     <div class="gf-form-group">
         <div class="gf-form-inline" ng-repeat="network in ctrl.networks">
             <div class="gf-form">

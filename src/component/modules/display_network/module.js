@@ -14,6 +14,8 @@ class DisplayNetworkCtrl extends PanelCtrl {
             data => this.networks = data,
             error => alert(AlertType.ERROR, 'GnB App Error', error)
         );
+
+        this.displayGraph();
     }
 
     initEditMode() {
@@ -22,14 +24,20 @@ class DisplayNetworkCtrl extends PanelCtrl {
         this.editorTabIndex = 1;
     }
 
-    displayGraph() {
+    setGraph() {
         let network = document.getElementById("networks");
-        let networkID = this.networks.find(c => c.name === network.options[network.selectedIndex].text);
+        this.networkID = this.networks.find(c => c.name === network.options[network.selectedIndex].text);
 
-        getDynamicGraph(this.$http, networkID.id).then(
-            data => document.getElementById("wrapper-bbn").innerHTML = data,
-            error => alert(AlertType.WARNING, 'Network ' + networkID.name, error)
-        );
+        this.displayGraph();
+    }
+
+    displayGraph() {
+        if(this.networkID !== undefined) {
+            getDynamicGraph(this.$http, networkID.id).then(
+                data => document.getElementById("wrapper-bbn").innerHTML = data,
+                error => alert(AlertType.WARNING, 'Network ' + networkID.name, error)
+            );
+        }
     }
 
 }

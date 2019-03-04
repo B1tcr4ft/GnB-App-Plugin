@@ -15,7 +15,7 @@ class DisplayDynamicNetworkCtrl extends PanelCtrl {
             error => alert(AlertType.ERROR, 'GnB App Error', error)
         );
 
-        $scope.ctrl.events.on('refresh', this.refreshGraph.bind(this));
+        $scope.ctrl.events.on('refresh', this.refreshGraph);
     }
 
     initEditMode() {

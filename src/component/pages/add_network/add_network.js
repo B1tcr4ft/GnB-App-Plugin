@@ -10,6 +10,7 @@ class AddNetworkCtrl {
         this.$http = $http;
         this.backendSrv = backendSrv;
 
+        //TODO async
         this.databases = [];
         this.backendSrv.get('api/datasources').then(
             data => this.databases = data,

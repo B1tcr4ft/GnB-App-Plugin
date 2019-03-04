@@ -12,6 +12,7 @@ class ListNetworkCtrl extends PanelCtrl {
         super($scope, $injector);
         this.$http=$http;
 
+        //TODO async
         this.networks = [];
         getNetworkList(this.$http).then(
             data => this.networks = data,

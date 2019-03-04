@@ -9,12 +9,14 @@ class ModifyNetworkCtrl {
         this.$http = $http;
         this.backendSrv = backendSrv;
 
+        //TODO async
         this.databases = [];
         this.backendSrv.get('api/datasources').then(
             data => this.databases = data.filter(db => db.type === "influxdb"),
             error => appEvents.emit('alert-error', ['GnB App Error', error])
         );
 
+        //TODO async
         this.networks = [];
         getNetworkList(this.$http).then(
             data => this.networks = data,

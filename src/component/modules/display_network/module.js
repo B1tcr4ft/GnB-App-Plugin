@@ -1,4 +1,5 @@
 import { PanelCtrl } from 'grafana/app/plugins/sdk';
+import { appEvents } from 'app/core/app_events';
 import {alert,AlertType} from "../../../utils/alert-util";
 import { getNetworkList, getDynamicGraph } from '../../../utils/network-util'
 
@@ -15,11 +16,9 @@ class DisplayNetworkCtrl extends PanelCtrl {
             error => alert(AlertType.ERROR, 'GnB App Error', error)
         );
 
-        $scope.$on('$viewContentLoaded', () => {
-            console.log("render 1");
-        });
-        $scope.$on('$refresh', () => {
-            console.log("render 2");
+        appEvents.on('refresh', this.displayGraph);
+        appEvents.on('refresh', () => {
+            console.log("TRIGGER");
         });
     }
 

@@ -1,4 +1,4 @@
-import { appEvents } from 'grafana/app/core/core';
+import {alert,AlertType} from "../../../utils/alert-util";
 import {getNetwork, getNetworkList, updateNetwork} from "../../../utils/network-util";
 
 class ModifyNetworkCtrl {
@@ -13,14 +13,14 @@ class ModifyNetworkCtrl {
         this.databases = [];
         this.backendSrv.get('api/datasources').then(
             data => this.databases = data.filter(db => db.type === "influxdb"),
-            error => appEvents.emit('alert-error', ['GnB App Error', error])
+            error => alert(AlertType.ERROR, 'GnB App Error', error)
         );
 
         //TODO async
         this.networks = [];
         getNetworkList(this.$http).then(
             data => this.networks = data,
-            error => appEvents.emit('alert-error', ['GnB App Error', error])
+            error => alert(AlertType.ERROR, 'GnB App Error', error)
         );
 
         this.nodes = [];
@@ -39,7 +39,7 @@ class ModifyNetworkCtrl {
                 this.nodes = data.nodes;
                 this.networkSelected = data;
             },
-            error => appEvents.emit('alert-error', ['GnB App Error', error])
+            error => alert(AlertType.ERROR, 'GnB App Error', error)
         );
     }
 
@@ -59,7 +59,7 @@ class ModifyNetworkCtrl {
 
         this.$http(req).then(
             res => res.data.results[0].series.forEach(t =>this.tables.push(t)),
-            error => appEvents.emit('alert-error', ['GnB App Error', error])
+            error => alert(AlertType.ERROR, 'GnB App Error', error)
         );
     }
 
@@ -85,8 +85,8 @@ class ModifyNetworkCtrl {
         });
 
         updateNetwork(this.$http, this.networkSelected.id, this.networkSelected).then(
-            data => appEvents.emit('alert-success', ['Network ' + this.networkSelected.name, data]),
-            error => appEvents.emit('alert-warning', ['Network ' + this.networkSelected.name, error])
+            data => alert(AlertType.SUCCESS, 'Network ' + this.networkSelected.name, data),
+            error => alert(AlertType.WARNING, 'Network ' + this.networkSelected.name, error)
         );
     }
 }

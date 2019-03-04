@@ -1,5 +1,5 @@
 import { PanelCtrl, loadPluginCss } from 'grafana/app/plugins/sdk';
-import { appEvents } from 'grafana/app/core/core';
+import {alert,AlertType} from "../../../utils/alert-util";
 import {getNetworkList, startNetwork, stopNetwork} from '../../../utils/network-util'
 
 loadPluginCss({
@@ -16,7 +16,7 @@ class ListNetworkCtrl extends PanelCtrl {
         this.networks = [];
         getNetworkList(this.$http).then(
             data => this.networks = data,
-            error => appEvents.emit('alert-error', ['GnB App Error', error])
+            error => alert(AlertType.ERROR, 'GnB App Error', error)
         );
     }
 
@@ -24,9 +24,9 @@ class ListNetworkCtrl extends PanelCtrl {
         startNetwork(this.$http, network.id).then(
             data => {
                 network.active = true;
-                appEvents.emit('alert-success', ['Network ' + network.name, data]);
+                alert(AlertType.SUCCESS, 'Network ' + network.name, data);
             },
-            error => appEvents.emit('alert-warning', ['Network ' + network.name, error])
+            error => alert(AlertType.WARNING, 'Network ' + network.name, error)
         );
     }
 
@@ -34,9 +34,9 @@ class ListNetworkCtrl extends PanelCtrl {
         stopNetwork(this.$http, network.id).then(
             data => {
                 network.active = false;
-                appEvents.emit('alert-success', ['Network ' + network.name, data]);
+                alert(AlertType.SUCCESS, 'Network ' + network.name, data);
             },
-            error => appEvents.emit('alert-warning', ['Network ' + network.name, error])
+            error => alert(AlertType.WARNING, 'Network ' + network.name, error)
         );
     }
 

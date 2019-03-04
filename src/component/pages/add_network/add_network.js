@@ -1,4 +1,4 @@
-import { appEvents } from 'grafana/app/core/core';
+import {alert,AlertType} from "../../../utils/alert-util";
 import {Network} from "gnb-network/es6";
 import { saveNetwork } from '../../../utils/network-util'
 
@@ -14,7 +14,7 @@ class AddNetworkCtrl {
         this.databases = [];
         this.backendSrv.get('api/datasources').then(
             data => this.databases = data,
-            error => appEvents.emit('alert-error', ['GnB App Error', error])
+            error => alert(AlertType.ERROR, 'GnB App Error', error)
         );
     }
 
@@ -35,8 +35,8 @@ class AddNetworkCtrl {
 
             console.log(JSON.stringify(network.toJSON()));
             saveNetwork(this.$http, network.toJSON()).then(
-                data => appEvents.emit('alert-success', ['Network ' + contents.name, data]),
-                error => appEvents.emit('alert-warning', ['Network ' + contents.name, error])
+                data => alert(AlertType.SUCCESS, 'Network ' + contents.name, data),
+                error => alert(AlertType.WARNING, 'Network ' + contents.name, error)
             );
         };
         fileReader.readAsText(file);

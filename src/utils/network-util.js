@@ -145,3 +145,21 @@ export function getStaticGraph($http, networkID) {
         $http(req).then(res => resolve(res.data), error => reject(error.data));
     });
 }
+
+/**
+ * Get an svg containing the dynamic visualization
+ * of the graph of the given network ID
+ * @param $http
+ * @param networkID {string} the ID of the network
+ * @returns {Promise} the response data | the error
+ */
+export function getDynamicGraph($http, networkID) {
+    return new Promise((resolve, reject) => {
+        let req = {
+            method: 'GET',
+            url: 'https://api.bitcraftswe.it/api/dynamic-graph/' + networkID
+        };
+
+        $http(req).then(res => resolve(res.data), error => reject(error.data));
+    });
+}

@@ -1,6 +1,6 @@
 import { PanelCtrl } from 'grafana/app/plugins/sdk';
-import { appEvents } from 'grafana/app/core/core';
-import { getNetworkList, getStaticGraph } from '../../../utils/network-util'
+import {alert,AlertType} from "../../../utils/alert-util";
+import { getNetworkList, getDynamicGraph } from '../../../utils/network-util'
 
 class DisplayNetworkCtrl extends PanelCtrl {
 
@@ -12,7 +12,7 @@ class DisplayNetworkCtrl extends PanelCtrl {
         this.networks = [];
         getNetworkList(this.$http).then(
             data => this.networks = data,
-            error => appEvents.emit('alert-error', ['GnB App Error', error])
+            error => alert(AlertType.ERROR, 'GnB App Error', error)
         );
     }
 
@@ -26,9 +26,9 @@ class DisplayNetworkCtrl extends PanelCtrl {
         let network = document.getElementById("networks");
         let networkID = this.networks.find(c => c.name === network.options[network.selectedIndex].text);
 
-        getStaticGraph(this.$http, networkID.id).then(
+        getDynamicGraph(this.$http, networkID.id).then(
             data => document.getElementById("wrapper-bbn").innerHTML = data,
-            error => appEvents.emit('alert-warning', ['Network ' + networkID.name, error])
+            error => alert(AlertType.WARNING, 'Network ' + networkID.name, error)
         );
     }
 

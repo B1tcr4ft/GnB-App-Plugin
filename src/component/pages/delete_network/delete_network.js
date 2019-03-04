@@ -1,4 +1,4 @@
-import { appEvents } from 'grafana/app/core/core';
+import {alert,AlertType} from "../../../utils/alert-util";
 import {deleteNetwork, getNetworkList} from '../../../utils/network-util'
 
 class DeleteNetworkCtrl {
@@ -12,7 +12,7 @@ class DeleteNetworkCtrl {
         this.networks = [];
         getNetworkList(this.$http).then(
             data => this.networks = data,
-            error => appEvents.emit('alert-error', ['GnB App Error', error])
+            error => alert(AlertType.ERROR, 'GnB App Error', error)
         );
     }
 
@@ -21,8 +21,8 @@ class DeleteNetworkCtrl {
         let networkID = this.networks.find(c => c.name === network.options[network.selectedIndex].text);
 
         deleteNetwork(this.$http, networkID.id).then(
-            data => appEvents.emit('alert-success', ['Network ' + networkID.name, data]),
-            error => appEvents.emit('alert-warning', ['Network ' + networkID.name, error])
+            data => alert(AlertType.SUCCESS, 'Network ' + networkID.name, data),
+            error => alert(AlertType.WARNING, 'Network ' + networkID.name, error)
         );
     }
 

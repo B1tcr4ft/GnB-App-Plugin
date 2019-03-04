@@ -47,7 +47,8 @@ export function saveNetwork($http, json) {
             method: 'POST',
             url: 'https://api.bitcraftswe.it/api/save',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*'
             },
             data: json
         };

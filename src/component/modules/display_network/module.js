@@ -15,7 +15,7 @@ class DisplayNetworkCtrl extends PanelCtrl {
             error => alert(AlertType.ERROR, 'GnB App Error', error)
         );
 
-        this.displayGraph();
+        this.events.on('render', this.displayGraph().bind(this));
     }
 
     initEditMode() {

@@ -58,7 +58,10 @@ class ModifyNetworkCtrl {
         };
 
         this.$http(req).then(
-            res => res.data.results[0].series.forEach(t => this.tables.push(t)),
+            res => {
+                this.tables = [];
+                res.data.results[0].series.forEach(t => this.tables.push(t));
+            },
             error => alert(AlertType.ERROR, 'GnB App Error', error)
         );
     }

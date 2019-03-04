@@ -84,7 +84,6 @@ class ModifyNetworkCtrl {
             }
         });
 
-        console.log(JSON.stringify(this.networkSelected)); //TODO UPDATE rete esistente sul server
         updateNetwork(this.$http, this.networkSelected.id, this.networkSelected).then(
             data => appEvents.emit('alert-success', ['Network ' + this.networkSelected.name, data]),
             error => appEvents.emit('alert-warning', ['Network ' + this.networkSelected.name, error])

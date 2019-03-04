@@ -1,5 +1,5 @@
 import { appEvents } from 'grafana/app/core/core';
-import {getNetwork, getNetworkList} from "../../../utils/network-util";
+import {getNetwork, getNetworkList, updateNetwork} from "../../../utils/network-util";
 
 class ModifyNetworkCtrl {
 
@@ -68,20 +68,27 @@ class ModifyNetworkCtrl {
         this.columns = this.tables.find(c => c.name === table.options[table.selectedIndex].text).values;
     }
 
-    updateNetwork() {
+    update() {
         let table = document.getElementById("tables");
         let column = document.getElementById("columns");
         let node = document.getElementById("nodes");
-        let nodeID = this.networkSelected.nodes.find(c => c.name === node.options[node.selectedIndex].text);
 
-        nodeID.sensor.databaseSensorUrl = this.databaseSelected.url;
-        nodeID.sensor.databaseSensorUser = this.databaseSelected.user;
-        nodeID.sensor.databaseSensorPassword = this.databaseSelected.password;
-        nodeID.sensor.databaseSensorName = this.databaseSelected.database;
-        nodeID.sensor.databaseSensorTable = table.options[table.selectedIndex].text;
-        nodeID.sensor.databaseSensorColumn = column.options[column.selectedIndex].text;
+        this.networkSelected.nodes.forEach(c => {
+            if(c.name === node.options[node.selectedIndex].text) {
+                c.sensor.databaseSensorUrl = this.databaseSelected.url;
+                c.sensor.databaseSensorUser = this.databaseSelected.user;
+                c.sensor.databaseSensorPassword = this.databaseSelected.password;
+                c.sensor.databaseSensorName = this.databaseSelected.database;
+                c.sensor.databaseSensorTable = table.options[table.selectedIndex].text;
+                c.sensor.databaseSensorColumn = column.options[column.selectedIndex].text;
+            }
+        });
 
-        console.log(nodeID); //TODO UPDATE rete esistente sul server
+        console.log(JSON.stringify(this.networkSelected)); //TODO UPDATE rete esistente sul server
+        updateNetwork(this.$http, this.networkSelected.id, this.networkSelected).then(
+            data => appEvents.emit('alert-success', ['Network ' + this.networkSelected.name, data]),
+            error => appEvents.emit('alert-warning', ['Network ' + this.networkSelected.name, error])
+        );
     }
 }
 

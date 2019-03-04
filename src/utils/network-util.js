@@ -4,7 +4,7 @@
 /**
  * Start a network with the given ID
  * @param $http
- * @param networkID {string} id of the network
+ * @param networkID {string} the ID of the network
  * @returns {Promise} the response data | the error
  */
 export function startNetwork($http, networkID) {
@@ -21,7 +21,7 @@ export function startNetwork($http, networkID) {
 /**
  * Stop a network with the given ID
  * @param $http
- * @param networkID {string} id of the network
+ * @param networkID {string} the ID of the network
  * @returns {Promise} the response data | the error
  */
 export function stopNetwork($http, networkID) {
@@ -38,7 +38,7 @@ export function stopNetwork($http, networkID) {
 /**
  * Save a new network with the given json
  * @param $http
- * @param json
+ * @param json {JSON} json file containing the definition of the network
  * @returns {Promise} the response data | the error
  */
 export function saveNetwork($http, json) {
@@ -59,7 +59,7 @@ export function saveNetwork($http, json) {
 /**
  * Delete a network with the given ID
  * @param $http
- * @param networkID {string} id of the network
+ * @param networkID {string} the ID of the network
  * @returns {Promise} the response data | the error
  */
 export function deleteNetwork($http, networkID) {
@@ -70,13 +70,35 @@ export function deleteNetwork($http, networkID) {
         };
 
         $http(req).then(res => resolve(res.data), error => reject(error.data));
-    })
+    });
+}
+
+/**
+ * Update a network with the given ID
+ * @param $http
+ * @param networkID {string} the ID of the network
+ * @param json {JSON} json file containing the definition of the network
+ * @returns {Promise} the response data | the error
+ */
+export function updateNetwork($http, networkID, json) {
+    return new Promise((resolve, reject) => {
+        let req = {
+            method: 'POST',
+            url: 'https://api.bitcraftswe.it/api/update/' + networkID,
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            data: json
+        };
+
+        $http(req).then(res => resolve(res.data), error => reject(error.data));
+    });
 }
 
 /**
  * Get a network with the given ID
  * @param $http
- * @param networkID
+ * @param networkID {string} the ID of the network
  * @returns {Promise} the response data | the error
  */
 export function getNetwork($http, networkID) {

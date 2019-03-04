@@ -15,9 +15,15 @@ class DisplayNetworkCtrl extends PanelCtrl {
             error => alert(AlertType.ERROR, 'GnB App Error', error)
         );
 
-        $scope.ctrl.events.on('render', () => {
+        $scope.ctrl.events.on('refresh', () => {
             console.log("RENDER");
         });
+        $scope.ctrl.events.on('refresh', this.test.bind(this));
+        $scope.ctrl.events.on('render', this.test.bind(this));
+    }
+
+    test() {
+        console.log("RENDER");
     }
 
     initEditMode() {

@@ -18,7 +18,7 @@ class DisplayNetworkCtrl extends PanelCtrl {
         $scope.$on('$viewContentLoaded', () => {
             console.log("render 1");
         });
-        $scope.$on('$routeUpdate', () => {
+        $scope.$on('$refresh', () => {
             console.log("render 2");
         });
     }

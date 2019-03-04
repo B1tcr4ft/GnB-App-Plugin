@@ -33,9 +33,9 @@ class DisplayNetworkCtrl extends PanelCtrl {
 
     displayGraph() {
         if(this.networkID !== undefined) {
-            getDynamicGraph(this.$http, networkID.id).then(
+            getDynamicGraph(this.$http, this.networkID.id).then(
                 data => document.getElementById("wrapper-bbn").innerHTML = data,
-                error => alert(AlertType.WARNING, 'Network ' + networkID.name, error)
+                error => alert(AlertType.WARNING, 'Network ' + this.networkID.name, error)
             );
         }
     }

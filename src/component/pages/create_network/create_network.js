@@ -10,4 +10,4 @@ class CreateNetworkCtrl {
 
 CreateNetworkCtrl.templateUrl = 'public/plugins/gnb/component/pages/create_network/create_network.html';
 
-export { CreateNetworkCtrl };
+export {CreateNetworkCtrl};

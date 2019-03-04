@@ -1,4 +1,4 @@
-import {alert,AlertType} from "../../../utils/alert-util";
+import {alert, AlertType} from "../../../utils/alert-util";
 import {getNetwork, getNetworkList, updateNetwork} from "../../../utils/network-util";
 
 class ModifyNetworkCtrl {
@@ -58,7 +58,7 @@ class ModifyNetworkCtrl {
         };
 
         this.$http(req).then(
-            res => res.data.results[0].series.forEach(t =>this.tables.push(t)),
+            res => res.data.results[0].series.forEach(t => this.tables.push(t)),
             error => alert(AlertType.ERROR, 'GnB App Error', error)
         );
     }
@@ -74,7 +74,7 @@ class ModifyNetworkCtrl {
         let node = document.getElementById("nodes");
 
         this.networkSelected.nodes.forEach(c => {
-            if(c.name === node.options[node.selectedIndex].text) {
+            if (c.name === node.options[node.selectedIndex].text) {
                 c.sensor.databaseSensorUrl = this.databaseSelected.url;
                 c.sensor.databaseSensorUser = this.databaseSelected.user;
                 c.sensor.databaseSensorPassword = this.databaseSelected.password;
@@ -93,4 +93,4 @@ class ModifyNetworkCtrl {
 
 ModifyNetworkCtrl.templateUrl = 'public/plugins/gnb/component/pages/edit_network/edit_network.html';
 
-export { ModifyNetworkCtrl };
+export {ModifyNetworkCtrl};

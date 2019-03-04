@@ -1,9 +1,9 @@
-import { appEvents } from 'grafana/app/core/core';
+import {appEvents} from 'grafana/app/core/core';
 
 export let AlertType = {
-    SUCCESS : {value: 0, name: "alert-success"},
+    SUCCESS: {value: 0, name: "alert-success"},
     WARNING: {value: 1, name: "alert-warning"},
-    ERROR : {value: 2, name: "alert-error"}
+    ERROR: {value: 2, name: "alert-error"}
 };
 
 /**

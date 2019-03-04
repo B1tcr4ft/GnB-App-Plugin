@@ -5,11 +5,12 @@
 <div class="gf-form-group">
     <div class="gf-form-inline">
         <div class="gf-form">
-            <input type="file" id="upload" class="gf-form-input" >
+            <input type="file" id="upload" class="gf-form-input">
         </div>
         <div class="gf-form" ng-if="ctrl.databases.length > 0">
             <label class="gf-form-label" for="databases">Data Source</label>
-            <select name="databases" id="databases" ng-options="database as database.name for database in ctrl.databases" ng-model="database">
+            <select name="databases" id="databases"
+                    ng-options="database as database.name for database in ctrl.databases" ng-model="database">
                 <option value="" disabled selected hidden>Choose database</option>
             </select>
         </div>

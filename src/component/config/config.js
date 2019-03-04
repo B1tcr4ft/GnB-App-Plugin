@@ -1,4 +1,6 @@
 export class GnbAppConfigCtrl {
-  constructor() { }
+    constructor() {
+    }
 }
+
 GnbAppConfigCtrl.templateUrl = 'component/config/config.html';

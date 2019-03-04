@@ -1,6 +1,6 @@
-import {alert,AlertType} from "../../../utils/alert-util";
+import {alert, AlertType} from "../../../utils/alert-util";
 import {Network} from "gnb-network/es6";
-import { saveNetwork } from '../../../utils/network-util'
+import {saveNetwork} from '../../../utils/network-util'
 
 class AddNetworkCtrl {
 
@@ -45,4 +45,4 @@ class AddNetworkCtrl {
 
 AddNetworkCtrl.templateUrl = 'public/plugins/gnb/component/pages/add_network/add_network.html';
 
-export { AddNetworkCtrl };
+export {AddNetworkCtrl};

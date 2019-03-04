@@ -1,6 +1,6 @@
-import { PanelCtrl } from 'grafana/app/plugins/sdk';
-import {alert,AlertType} from "../../../utils/alert-util";
-import { getNetworkList, getDynamicGraph } from '../../../utils/network-util'
+import {PanelCtrl} from 'grafana/app/plugins/sdk';
+import {alert, AlertType} from "../../../utils/alert-util";
+import {getDynamicGraph, getNetworkList} from '../../../utils/network-util'
 
 class DisplayDynamicNetworkCtrl extends PanelCtrl {
 
@@ -32,7 +32,7 @@ class DisplayDynamicNetworkCtrl extends PanelCtrl {
     }
 
     refreshGraph() {
-        if(this.networkID !== undefined) {
+        if (this.networkID !== undefined) {
             getDynamicGraph(this.$http, this.networkID.id).then(
                 data => document.getElementById("wrapper-bbn").innerHTML = data,
                 error => alert(AlertType.WARNING, 'Network ' + this.networkID.name, error)
@@ -44,4 +44,4 @@ class DisplayDynamicNetworkCtrl extends PanelCtrl {
 
 DisplayDynamicNetworkCtrl.templateUrl = 'public/plugins/gnb/component/modules/display_dynamic_network/display_dynamic_network.html';
 
-export { DisplayDynamicNetworkCtrl as PanelCtrl };
+export {DisplayDynamicNetworkCtrl as PanelCtrl};

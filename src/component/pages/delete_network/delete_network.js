@@ -1,4 +1,4 @@
-import {alert,AlertType} from "../../../utils/alert-util";
+import {alert, AlertType} from "../../../utils/alert-util";
 import {deleteNetwork, getNetworkList} from '../../../utils/network-util'
 
 class DeleteNetworkCtrl {
@@ -30,4 +30,4 @@ class DeleteNetworkCtrl {
 
 DeleteNetworkCtrl.templateUrl = 'public/plugins/gnb/component/pages/delete_network/delete_network.html';
 
-export { DeleteNetworkCtrl };
+export {DeleteNetworkCtrl};

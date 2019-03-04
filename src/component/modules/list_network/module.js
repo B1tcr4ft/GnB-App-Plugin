@@ -1,5 +1,5 @@
-import { PanelCtrl, loadPluginCss } from 'grafana/app/plugins/sdk';
-import {alert,AlertType} from "../../../utils/alert-util";
+import {loadPluginCss, PanelCtrl} from 'grafana/app/plugins/sdk';
+import {alert, AlertType} from "../../../utils/alert-util";
 import {getNetworkList, startNetwork, stopNetwork} from '../../../utils/network-util'
 
 loadPluginCss({
@@ -10,7 +10,7 @@ class ListNetworkCtrl extends PanelCtrl {
 
     constructor($scope, $injector, $http) {
         super($scope, $injector);
-        this.$http=$http;
+        this.$http = $http;
 
         //TODO async
         this.networks = [];
@@ -44,4 +44,4 @@ class ListNetworkCtrl extends PanelCtrl {
 
 ListNetworkCtrl.templateUrl = 'component/modules/list_network/list_network.html';
 
-export { ListNetworkCtrl as PanelCtrl };
+export {ListNetworkCtrl as PanelCtrl};

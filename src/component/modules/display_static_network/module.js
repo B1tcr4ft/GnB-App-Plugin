@@ -1,6 +1,6 @@
-import { PanelCtrl } from 'grafana/app/plugins/sdk';
-import {alert,AlertType} from "../../../utils/alert-util";
-import { getNetworkList, getStaticGraph } from '../../../utils/network-util'
+import {PanelCtrl} from 'grafana/app/plugins/sdk';
+import {alert, AlertType} from "../../../utils/alert-util";
+import {getNetworkList, getStaticGraph} from '../../../utils/network-util'
 
 class DisplayStaticNetworkCtrl extends PanelCtrl {
 
@@ -36,4 +36,4 @@ class DisplayStaticNetworkCtrl extends PanelCtrl {
 
 DisplayStaticNetworkCtrl.templateUrl = 'public/plugins/gnb/component/modules/display_static_network/display_static_network.html';
 
-export { DisplayStaticNetworkCtrl as PanelCtrl };
+export {DisplayStaticNetworkCtrl as PanelCtrl};

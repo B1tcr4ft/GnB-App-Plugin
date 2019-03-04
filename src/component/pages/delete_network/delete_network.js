@@ -28,6 +28,6 @@ class DeleteNetworkCtrl {
 
 }
 
-DeleteNetworkCtrl.templateUrl = 'public/plugins/gnb/component/pages/add_network/add_network.html';
+DeleteNetworkCtrl.templateUrl = 'public/plugins/gnb/component/pages/delete_network/delete_network.html';
 
 export { DeleteNetworkCtrl };

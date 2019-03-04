@@ -28,10 +28,11 @@ class DisplayNetworkCtrl extends PanelCtrl {
         let network = document.getElementById("networks");
         this.networkID = this.networks.find(c => c.name === network.options[network.selectedIndex].text);
 
-        this.displayGraph();
+        //this.displayGraph();
     }
 
     displayGraph() {
+        console.log("REFRESH");
         if(this.networkID !== undefined) {
             getDynamicGraph(this.$http, this.networkID.id).then(
                 data => document.getElementById("wrapper-bbn").innerHTML = data,

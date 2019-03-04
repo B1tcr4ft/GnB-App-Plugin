@@ -1,6 +1,10 @@
-import {PanelCtrl} from 'grafana/app/plugins/sdk';
+import {loadPluginCss, PanelCtrl} from 'grafana/app/plugins/sdk';
 import {alert, AlertType} from "../../../utils/alert-util";
 import {getDynamicGraph, getNetworkList} from '../../../utils/network-util'
+
+loadPluginCss({
+    dark: 'plugins/gnb/css/gnb.dark.css'
+});
 
 class DisplayDynamicNetworkCtrl extends PanelCtrl {
 

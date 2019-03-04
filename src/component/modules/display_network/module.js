@@ -15,11 +15,12 @@ class DisplayNetworkCtrl extends PanelCtrl {
             error => alert(AlertType.ERROR, 'GnB App Error', error)
         );
 
-        this.events.on('render', () => {
-            this.displayGraph();
-            console.log("render");
+        $scope.$on('$viewContentLoaded', () => {
+            console.log("render 1");
         });
-        console.log("test");
+        $scope.$on('$routeUpdate', () => {
+            console.log("render 2");
+        });
     }
 
     initEditMode() {

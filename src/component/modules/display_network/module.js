@@ -1,4 +1,5 @@
 import { PanelCtrl } from 'grafana/app/plugins/sdk';
+import { appEvents } from 'grafana/app/core/core';
 import {alert,AlertType} from "../../../utils/alert-util";
 import { getNetworkList, getDynamicGraph } from '../../../utils/network-util'
 
@@ -15,7 +16,10 @@ class DisplayNetworkCtrl extends PanelCtrl {
             error => alert(AlertType.ERROR, 'GnB App Error', error)
         );
 
-        this.displayGraph();
+        appEvents.on('refresh', this.displayGraph);
+        appEvents.on('refresh', () => {
+            console.log("TRIGGER");
+        });
     }
 
     initEditMode() {

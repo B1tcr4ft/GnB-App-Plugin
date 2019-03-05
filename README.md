@@ -1,6 +1,6 @@
 # G&B
 ## User guide
-Cose
+Works in progress
 
 ## Installing
 Run command ```npm install``` and then ```npm build install```

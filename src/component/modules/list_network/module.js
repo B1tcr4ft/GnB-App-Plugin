@@ -20,23 +20,23 @@ class ListNetworkCtrl extends PanelCtrl {
         );
     }
 
-    start(network) {
-        startNetwork(this.$http, network.id).then(
+    start(networkID, networkName) {
+        startNetwork(this.$http, networkID).then(
             data => {
-                network.active = true;
-                alert(AlertType.SUCCESS, 'Network ' + network.name, data);
+                //network.active = true;
+                alert(AlertType.SUCCESS, 'Network ' + networkName, data);
             },
-            error => alert(AlertType.WARNING, 'Network ' + network.name, error)
+            error => alert(AlertType.WARNING, 'Network ' + networkName, error)
         );
     }
 
-    stop(network) {
-        stopNetwork(this.$http, network.id).then(
+    stop(networkID, networkName) {
+        stopNetwork(this.$http, networkID).then(
             data => {
-                network.active = false;
-                alert(AlertType.SUCCESS, 'Network ' + network.name, data);
+                //network.active = false;
+                alert(AlertType.SUCCESS, 'Network ' + networkName, data);
             },
-            error => alert(AlertType.WARNING, 'Network ' + network.name, error)
+            error => alert(AlertType.WARNING, 'Network ' + networkName, error)
         );
     }
 

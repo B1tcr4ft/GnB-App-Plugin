@@ -10,11 +10,11 @@
             <div class="gf-form">
                 <!--TODO check buttons not disabling-->
                 <label class="gf-form-label custom-label width-12">{{network.name}}</label>
-                <button class="btn btn-success custom-btn" ng-disabled="network.active" ng-click="ctrl.start(network)">
+                <button class="btn btn-success custom-btn" ng-disabled="network.active" ng-click="ctrl.start(network.id, network.name);" ng-bind="network.active">
                     <i class="fa fa-play"></i>
                     Start
                 </button>
-                <button class="btn btn-danger custom-btn" ng-disabled="!network.active" ng-click="ctrl.stop(network)">
+                <button class="btn btn-danger custom-btn" ng-disabled="!network.active" ng-click="ctrl.stop(network.id, network.name);" ng-bind="network.active">
                     <i class="fa fa-stop"></i>
                     Stop
                 </button>
